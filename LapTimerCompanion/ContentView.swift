@@ -1,24 +1,35 @@
-//
-//  ContentView.swift
-//  LapTimerCompanion
-//
-//  Created by Jai Sinha on 9/16/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+    @State private var sessions: [Session] = []
+    @State private var showCoordinateInput = false
+    @State private var latitude = ""
+    @State private var longitude = ""
 
-#Preview {
-    ContentView()
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                VStack(spacing: 20) {
+                    Text("Welcome to Lap Timer Companion")
+                    TrackConfigurationView(
+                        latitude: $latitude,
+                        longitude: $longitude,
+                        showCoordinateInput: $showCoordinateInput
+                    )
+                    SessionsListView(sessions: $sessions)
+                }
+                .padding()
+            }
+            .navigationTitle("Lap Timer Companion")
+            .onAppear {
+                sessions = DatabaseManager.shared.fetchSessions()
+            }
+            .sheet(isPresented: $showCoordinateInput) {
+                CoordinateInputView(
+                    latitude: $latitude,
+                    longitude: $longitude
+                )
+            }
+        }
+    }
 }
