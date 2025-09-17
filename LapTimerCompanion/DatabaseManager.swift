@@ -7,6 +7,7 @@
 
 import Foundation
 import SQLite3
+import ConnectIQ
 
 class DatabaseManager {
     static let shared = DatabaseManager()
@@ -15,6 +16,7 @@ class DatabaseManager {
     private init() {
         openDatabase()
         createSessionsTable()
+        createDevicesTable()
     }
     
     deinit {
@@ -61,6 +63,27 @@ class DatabaseManager {
             print("Unable to create sessions table")
         }
     }
+    
+    private func createDevicesTable() {
+        let createTableSQL = """
+            CREATE TABLE IF NOT EXISTS devices (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                uuid TEXT UNIQUE NOT NULL,
+                display_name TEXT NOT NULL,
+                friendly_name TEXT,
+                device_type INTEGER,
+                last_updated REAL NOT NULL
+            );
+        """
+        
+        if sqlite3_exec(db, createTableSQL, nil, nil, nil) == SQLITE_OK {
+            print("Devices table created successfully")
+        } else {
+            print("Unable to create devices table")
+        }
+    }
+    
+    // MARK: - Session Methods
     
     func insertSession(date: Date,
                       stats: String,
@@ -182,5 +205,98 @@ class DatabaseManager {
         }
         
         sqlite3_finalize(statement)
+    }
+    
+    // MARK: - Device Storage Methods
+    
+    func clearAllDevices() {
+        let deleteSQL = "DELETE FROM devices;"
+        if sqlite3_exec(db, deleteSQL, nil, nil, nil) == SQLITE_OK {
+            print("All devices cleared from database")
+        } else {
+            print("Failed to clear devices from database")
+        }
+    }
+    
+    func saveDevices(_ devices: [String: IQDevice]) {
+        // Clear existing devices first as per documentation
+        clearAllDevices()
+        
+        for (uuidString, device) in devices {
+            insertDeviceUUID(uuidString, device: device)
+        }
+    }
+    
+    private func insertDeviceUUID(_ uuidString: String, device: IQDevice) {
+        let insertSQL = """
+            INSERT OR REPLACE INTO devices (uuid, display_name, friendly_name, device_type, last_updated) 
+            VALUES (?, ?, ?, ?, ?);
+        """
+        
+        var statement: OpaquePointer?
+        
+        if sqlite3_prepare_v2(db, insertSQL, -1, &statement, nil) == SQLITE_OK {
+            sqlite3_bind_text(statement, 1, uuidString, -1, nil)
+            sqlite3_bind_text(statement, 2, "Garmin Device", -1, nil)  // Generic name since we can't access properties
+            sqlite3_bind_null(statement, 3)  // No friendly name
+            sqlite3_bind_int(statement, 4, 0)  // Default device type
+            sqlite3_bind_double(statement, 5, Date().timeIntervalSince1970)
+            
+            if sqlite3_step(statement) == SQLITE_DONE {
+                print("Device saved successfully: \(uuidString)")
+            } else {
+                print("Could not save device")
+            }
+        } else {
+            print("INSERT device statement could not be prepared")
+        }
+        
+        sqlite3_finalize(statement)
+    }
+    
+    func hasStoredDevices() -> Bool {
+        let querySQL = "SELECT COUNT(*) FROM devices;"
+        var statement: OpaquePointer?
+        var hasDevices = false
+        
+        if sqlite3_prepare_v2(db, querySQL, -1, &statement, nil) == SQLITE_OK {
+            if sqlite3_step(statement) == SQLITE_ROW {
+                let count = sqlite3_column_int(statement, 0)
+                hasDevices = count > 0
+            }
+        }
+        
+        sqlite3_finalize(statement)
+        return hasDevices
+    }
+    
+    func fetchStoredDevices() -> [String: IQDevice] {
+        // Since IQDevice objects cannot be directly reconstructed from stored data,
+        // we return an empty dictionary but log the stored device UUIDs for reference
+        let querySQL = "SELECT uuid, display_name FROM devices ORDER BY last_updated DESC;"
+        var statement: OpaquePointer?
+        
+        if sqlite3_prepare_v2(db, querySQL, -1, &statement, nil) == SQLITE_OK {
+            while sqlite3_step(statement) == SQLITE_ROW {
+                guard let uuidCString = sqlite3_column_text(statement, 0) else {
+                    continue
+                }
+                let uuidString = String(cString: uuidCString)
+                
+                guard let displayNameCString = sqlite3_column_text(statement, 1) else {
+                    continue
+                }
+                let displayName = String(cString: displayNameCString)
+                
+                print("Found stored device: \(displayName) (\(uuidString))")
+            }
+        }
+        
+        sqlite3_finalize(statement)
+        
+        // Return empty dictionary since IQDevice objects cannot be reconstructed
+        // The app should use this method to check if devices were previously stored
+        // and then trigger device discovery through ConnectIQ SDK if needed
+        return [:]
     }
 }

@@ -10,7 +10,6 @@ struct ContentView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 20) {
-                    Text("Welcome to Lap Timer Companion")
                     TrackConfigurationView(
                         latitude: $latitude,
                         longitude: $longitude,

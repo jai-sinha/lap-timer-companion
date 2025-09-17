@@ -6,13 +6,30 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		7B5A47E82E7A7FED002B52BA /* ConnectIQ in Frameworks */ = {isa = PBXBuildFile; productRef = 7B5A47E72E7A7FED002B52BA /* ConnectIQ */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		7B5BA95C2E7A1CD10054EA43 /* LapTimerCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LapTimerCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		7B5BA95F2E7A1CD10054EA43 /* Exceptions for "LapTimerCompanion" folder in "LapTimerCompanion" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 7B5BA95B2E7A1CD10054EA43 /* LapTimerCompanion */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		7B5BA95E2E7A1CD10054EA43 /* LapTimerCompanion */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				7B5BA95F2E7A1CD10054EA43 /* Exceptions for "LapTimerCompanion" folder in "LapTimerCompanion" target */,
+			);
 			path = LapTimerCompanion;
 			sourceTree = "<group>";
 		};
@@ -23,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B5A47E82E7A7FED002B52BA /* ConnectIQ in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +83,7 @@
 			);
 			name = LapTimerCompanion;
 			packageProductDependencies = (
+				7B5A47E72E7A7FED002B52BA /* ConnectIQ */,
 			);
 			productName = LapTimerCompanion;
 			productReference = 7B5BA95C2E7A1CD10054EA43 /* LapTimerCompanion.app */;
@@ -94,6 +113,9 @@
 			);
 			mainGroup = 7B5BA9532E7A1CD00054EA43;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7B5A47E62E7A7FED002B52BA /* XCLocalSwiftPackageReference "../../../../../Applications/Garmin/connectiq-companion-app-sdk-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7B5BA95D2E7A1CD10054EA43 /* Products */;
 			projectDirPath = "";
@@ -182,6 +204,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -238,6 +261,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
@@ -253,14 +277,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GP43JX46JD;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Jai Sinha";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LapTimerCompanion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -287,14 +305,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GP43JX46JD;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Jai Sinha";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LapTimerCompanion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -334,6 +346,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		7B5A47E62E7A7FED002B52BA /* XCLocalSwiftPackageReference "../../../../../Applications/Garmin/connectiq-companion-app-sdk-ios" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../../../../Applications/Garmin/connectiq-companion-app-sdk-ios";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7B5A47E72E7A7FED002B52BA /* ConnectIQ */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ConnectIQ;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7B5BA9542E7A1CD10054EA43 /* Project object */;
 }

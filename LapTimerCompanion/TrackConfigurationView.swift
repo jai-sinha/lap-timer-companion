@@ -13,24 +13,29 @@ struct TrackConfigurationView: View {
     @Binding var showCoordinateInput: Bool
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Track Configuration")
-                .font(.headline)
+        VStack(alignment: .leading, spacing: 15) {
+            // Device Status Indicator
+            DeviceStatusView()
             
-            Button("Set Start/Finish Line Coordinates") {
-                showCoordinateInput = true
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Track Configuration")
+                    .font(.headline)
+                
+                Button("Set Start/Finish Line Coordinates") {
+                    showCoordinateInput = true
+                }
+                .buttonStyle(.bordered)
+                .frame(maxWidth: .infinity)
+                
+                if !latitude.isEmpty && !longitude.isEmpty {
+                    Text("Start/Finish: \(latitude), \(longitude)")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
             }
-            .buttonStyle(.bordered)
-            .frame(maxWidth: .infinity)
-            
-            if !latitude.isEmpty && !longitude.isEmpty {
-                Text("Start/Finish: \(latitude), \(longitude)")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
+            .padding()
+            .background(Color.gray.opacity(0.1))
+            .cornerRadius(10)
         }
-        .padding()
-        .background(Color.gray.opacity(0.1))
-        .cornerRadius(10)
     }
 }
