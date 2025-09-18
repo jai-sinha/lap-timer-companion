@@ -34,18 +34,12 @@
 
 import UIKit
 import ConnectIQ
+import SwiftUI
 
-let kMaxLogMessages = 200
-
-
-class AppMessageViewController: UIViewController, IQDeviceEventDelegate, IQAppMessageDelegate, UITableViewDataSource, UITableViewDelegate {
-
-    @IBOutlet weak var logView: UITextView!
-    @IBOutlet weak var tableView: UITableView!
-
+class AppMessageViewController: UIViewController, IQDeviceEventDelegate, IQAppMessageDelegate {
+    var viewModel: AppMessageViewModel!
     var appInfo = AppInfo()
-    var tableEntries = [TableEntry]()
-    var logMessages = [String]()
+    var hostingController: UIHostingController<AppMessageView>?
     
     var device: IQDevice {
         return self.appInfo.app.device
@@ -54,7 +48,7 @@ class AppMessageViewController: UIViewController, IQDeviceEventDelegate, IQAppMe
     convenience init(_ appInfo: AppInfo) {
         self.init()
         self.appInfo = appInfo
-        self.tableEntries = [
+        let entries = [
             TableEntry(label: "Hello world", message: "Hello World!" as AnyObject),
             TableEntry(label: "String (short)", message: "Hi" as AnyObject),
             TableEntry(label: "String (medium)", message: "Why hello there, good world! This is a medium-length string." as AnyObject),
@@ -63,19 +57,32 @@ class AppMessageViewController: UIViewController, IQDeviceEventDelegate, IQAppMe
             TableEntry(label: "Dictionary", message: ["key1": "value1", "key2": NSNull(), "key3": (42), "key4": (123.456)]),
             TableEntry(label: "Complex Object", message: ["A string", ["A", "nested", "array"], ["key1": "A nested dictionary", "key2": "three strings...", "key3": "and one array", "key4": ["This array has two strings", "and a nested dictionary!", ["one": (1), "two": (2), "three": (3), "four": (4), "five": (5), (1.61803): "G.R."]]], "And one last null", NSNull()])
         ]
+        self.viewModel = AppMessageViewModel(tableEntries: entries)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "\(self.appInfo.name) on \(self.device.friendlyName)"
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        let swiftUIView = AppMessageView(viewModel: viewModel) { [weak self] entry in
+            self?.sendMessage(entry.message)
+        }
+        let hostingController = UIHostingController(rootView: swiftUIView)
+        self.hostingController = hostingController
+        addChild(hostingController)
+        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(hostingController.view)
+        NSLayoutConstraint.activate([
+            hostingController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        hostingController.didMove(toParent: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         ConnectIQ.sharedInstance().register(forDeviceEvents: self.device, delegate: self)
         ConnectIQ.sharedInstance().register(forAppMessages: self.appInfo.app, delegate: self)
-        self.tableView.reloadData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -87,35 +94,12 @@ class AppMessageViewController: UIViewController, IQDeviceEventDelegate, IQAppMe
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.tableEntries.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let entry = self.tableEntries[indexPath.row]
-        var cell = tableView.dequeueReusableCell(withIdentifier: "commandcell")
-        if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "commandcell")
-        }
-        cell?.textLabel?.text = entry.label
-        return cell!
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let entry = self.tableEntries[indexPath.row]
-        self.sendMessage(entry.message)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
     // --------------------------------------------------------------------------------
     // MARK: - METHODS (IQDeviceEventDelegate)
     // --------------------------------------------------------------------------------
     
     func deviceStatusChanged(_ device: IQDevice, status: IQDeviceStatus) {
-        // We've only registered to receive status updates for one device, so we don't
-        // need to check the device parameter here. We know it's our device.
         if status != .connected {
-            // This page's device is no longer connected. Pop back to the device list.
             ConnectIQ.sharedInstance().unregister(forAllAppMessages: self)
             if let navigationController = self.navigationController {
                 navigationController.popToRootViewController(animated: true)
@@ -127,8 +111,6 @@ class AppMessageViewController: UIViewController, IQDeviceEventDelegate, IQAppMe
     // --------------------------------------------------------------------------------
     
     func receivedMessage(_ message: Any, from app: IQApp) {
-        // We've only registered to receive messages from our app, so we don't need to
-        // check the app parameter here. We know it's our app.
         logMessage("<<<<< Received message: \(message)")
     }
     // --------------------------------------------------------------------------------
@@ -138,21 +120,14 @@ class AppMessageViewController: UIViewController, IQDeviceEventDelegate, IQAppMe
     func sendMessage(_ message: Any) {
         logMessage(">>>>> Sending message: \(message)")
         ConnectIQ.sharedInstance().sendMessage(message, to: self.appInfo.app, progress: {(sentBytes: UInt32, totalBytes: UInt32) -> Void in
-            let percent: Double = 100.0 * Double(sentBytes / totalBytes)
+            let percent: Double = 100.0 * Double(sentBytes) / Double(totalBytes)
             print("Progress: \(percent)% sent \(sentBytes) bytes of \(totalBytes)")
-            }, completion: {(result: IQSendMessageResult) -> Void in
-                self.logMessage("Send message finished with result: \(NSStringFromSendMessageResult(result))")
+        }, completion: {(result: IQSendMessageResult) -> Void in
+            self.logMessage("Send message finished with result: \(NSStringFromSendMessageResult(result))")
         })
     }
-    
     func logMessage(_ message: String) {
         print("\(message)")
-        self.logMessages.append(message)
-        while self.logMessages.count > kMaxLogMessages {
-            self.logMessages.remove(at: 0)
-        }
-        self.logView.text = (self.logMessages as NSArray).componentsJoined(by: "\n")
-        self.logView.layoutManager.ensureLayout(for: self.logView.textContainer)
-        self.logView.scrollRangeToVisible(NSRange(location: self.logView.text.count - 1, length: 1))
+        viewModel.addLog(message)
     }
 }

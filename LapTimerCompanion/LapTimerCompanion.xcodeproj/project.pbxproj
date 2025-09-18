@@ -7,25 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F0709DF11E1A097A00D255F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0709DC71E1A097A00D255F5 /* AppDelegate.swift */; };
-		F0709DF21E1A097A00D255F5 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0709DC81E1A097A00D255F5 /* AppInfo.swift */; };
-		F0709DF31E1A097A00D255F5 /* AppMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0709DC91E1A097A00D255F5 /* AppMessageViewController.swift */; };
-		F0709DF41E1A097A00D255F5 /* AppMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0709DCA1E1A097A00D255F5 /* AppMessageViewController.xib */; };
-		F0709DF51E1A097A00D255F5 /* AppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0709DCB1E1A097A00D255F5 /* AppTableViewCell.swift */; };
-		F0709DF61E1A097A00D255F5 /* AppTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0709DCC1E1A097A00D255F5 /* AppTableViewCell.xib */; };
-		F0709DF71E1A097A00D255F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0709DCD1E1A097A00D255F5 /* Assets.xcassets */; };
-		F0709E031E1A097A00D255F5 /* DeviceList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0709DDA1E1A097A00D255F5 /* DeviceList.storyboard */; };
-		F0709E071E1A097A00D255F5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0709DE11E1A097A00D255F5 /* Constants.swift */; };
-		F0709E091E1A097A00D255F5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0709DE31E1A097A00D255F5 /* Default-568h@2x.png */; };
-		F0709E0A1E1A097A00D255F5 /* DeviceAppListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0709DE41E1A097A00D255F5 /* DeviceAppListViewController.swift */; };
-		F0709E0B1E1A097A00D255F5 /* DeviceAppListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0709DE51E1A097A00D255F5 /* DeviceAppListViewController.xib */; };
-		F0709E0C1E1A097A00D255F5 /* DeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0709DE61E1A097A00D255F5 /* DeviceListViewController.swift */; };
-		F0709E0D1E1A097A00D255F5 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0709DE71E1A097A00D255F5 /* DeviceManager.swift */; };
-		F0709E0E1E1A097A00D255F5 /* DeviceTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0709DE81E1A097A00D255F5 /* DeviceTableCellView.swift */; };
-		F0709E0F1E1A097A00D255F5 /* DeviceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0709DE91E1A097A00D255F5 /* DeviceTableViewCell.xib */; };
-		F0709E121E1A097A00D255F5 /* TableEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0709DEC1E1A097A00D255F5 /* TableEntry.swift */; };
+		7BA8A72D2E7BEBA30056D79F /* DeviceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A7272E7BEBA30056D79F /* DeviceTableViewCell.xib */; };
+		7BA8A72E2E7BEBA30056D79F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A72A2E7BEBA30056D79F /* LaunchScreen.storyboard */; };
+		7BA8A72F2E7BEBA30056D79F /* DeviceList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A7232E7BEBA30056D79F /* DeviceList.storyboard */; };
+		7BA8A7302E7BEBA30056D79F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A71D2E7BEBA30056D79F /* Assets.xcassets */; };
+		7BA8A7322E7BEBA30056D79F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A71F2E7BEBA30056D79F /* Default-568h@2x.png */; };
+		7BA8A7332E7BEBA30056D79F /* DeviceAppListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A7212E7BEBA30056D79F /* DeviceAppListViewController.xib */; };
+		7BA8A7342E7BEBA30056D79F /* AppTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A71C2E7BEBA30056D79F /* AppTableViewCell.xib */; };
+		7BA8A7352E7BEBA30056D79F /* AppMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A7192E7BEBA30056D79F /* AppMessageViewController.xib */; };
+		7BA8A7362E7BEBA30056D79F /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7162E7BEBA30056D79F /* AppInfo.swift */; };
+		7BA8A7372E7BEBA30056D79F /* DeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7242E7BEBA30056D79F /* DeviceListViewController.swift */; };
+		7BA8A7382E7BEBA30056D79F /* AppMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7172E7BEBA30056D79F /* AppMessageView.swift */; };
+		7BA8A7392E7BEBA30056D79F /* DeviceTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7262E7BEBA30056D79F /* DeviceTableCellView.swift */; };
+		7BA8A73A2E7BEBA30056D79F /* TableEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A72B2E7BEBA30056D79F /* TableEntry.swift */; };
+		7BA8A73B2E7BEBA30056D79F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A71E2E7BEBA30056D79F /* Constants.swift */; };
+		7BA8A73C2E7BEBA30056D79F /* AppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A71B2E7BEBA30056D79F /* AppTableViewCell.swift */; };
+		7BA8A73D2E7BEBA30056D79F /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7252E7BEBA30056D79F /* DeviceManager.swift */; };
+		7BA8A73E2E7BEBA30056D79F /* AppMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7182E7BEBA30056D79F /* AppMessageViewController.swift */; };
+		7BA8A73F2E7BEBA30056D79F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7152E7BEBA30056D79F /* AppDelegate.swift */; };
+		7BA8A7402E7BEBA30056D79F /* DeviceAppListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7202E7BEBA30056D79F /* DeviceAppListViewController.swift */; };
+		7BA8A7412E7BEBA30056D79F /* AppMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A71A2E7BEBA30056D79F /* AppMessageViewModel.swift */; };
 		F0709E221E1A0C4800D255F5 /* ConnectIQ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */; };
-		F0709E251E1A0CDD00D255F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0709E231E1A0CDD00D255F5 /* LaunchScreen.storyboard */; };
 		F0709E271E1A0D1200D255F5 /* ConnectIQ.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -44,27 +46,29 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F01F14F11DB5E01C0076EBE6 /* Garmin-ExampleApp-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Garmin-ExampleApp-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F0709DC71E1A097A00D255F5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Source/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
-		F0709DC81E1A097A00D255F5 /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppInfo.swift; path = Source/AppInfo.swift; sourceTree = SOURCE_ROOT; };
-		F0709DC91E1A097A00D255F5 /* AppMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppMessageViewController.swift; path = Source/AppMessageViewController.swift; sourceTree = SOURCE_ROOT; };
-		F0709DCA1E1A097A00D255F5 /* AppMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppMessageViewController.xib; path = Source/AppMessageViewController.xib; sourceTree = SOURCE_ROOT; };
-		F0709DCB1E1A097A00D255F5 /* AppTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppTableViewCell.swift; path = Source/AppTableViewCell.swift; sourceTree = SOURCE_ROOT; };
-		F0709DCC1E1A097A00D255F5 /* AppTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppTableViewCell.xib; path = Source/AppTableViewCell.xib; sourceTree = SOURCE_ROOT; };
-		F0709DCD1E1A097A00D255F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Source/Assets.xcassets; sourceTree = SOURCE_ROOT; };
-		F0709DDB1E1A097A00D255F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Source/Base.lproj/DeviceList.storyboard; sourceTree = SOURCE_ROOT; };
-		F0709DE11E1A097A00D255F5 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Source/Constants.swift; sourceTree = SOURCE_ROOT; };
-		F0709DE31E1A097A00D255F5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Source/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
-		F0709DE41E1A097A00D255F5 /* DeviceAppListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceAppListViewController.swift; path = Source/DeviceAppListViewController.swift; sourceTree = SOURCE_ROOT; };
-		F0709DE51E1A097A00D255F5 /* DeviceAppListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DeviceAppListViewController.xib; path = Source/DeviceAppListViewController.xib; sourceTree = SOURCE_ROOT; };
-		F0709DE61E1A097A00D255F5 /* DeviceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceListViewController.swift; path = Source/DeviceListViewController.swift; sourceTree = SOURCE_ROOT; };
-		F0709DE71E1A097A00D255F5 /* DeviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceManager.swift; path = Source/DeviceManager.swift; sourceTree = SOURCE_ROOT; };
-		F0709DE81E1A097A00D255F5 /* DeviceTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceTableCellView.swift; path = Source/DeviceTableCellView.swift; sourceTree = SOURCE_ROOT; };
-		F0709DE91E1A097A00D255F5 /* DeviceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DeviceTableViewCell.xib; path = Source/DeviceTableViewCell.xib; sourceTree = SOURCE_ROOT; };
-		F0709DEB1E1A097A00D255F5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
-		F0709DEC1E1A097A00D255F5 /* TableEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableEntry.swift; path = Source/TableEntry.swift; sourceTree = SOURCE_ROOT; };
+		7BA8A7152E7BEBA30056D79F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7BA8A7162E7BEBA30056D79F /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		7BA8A7172E7BEBA30056D79F /* AppMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMessageView.swift; sourceTree = "<group>"; };
+		7BA8A7182E7BEBA30056D79F /* AppMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMessageViewController.swift; sourceTree = "<group>"; };
+		7BA8A7192E7BEBA30056D79F /* AppMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppMessageViewController.xib; sourceTree = "<group>"; };
+		7BA8A71A2E7BEBA30056D79F /* AppMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMessageViewModel.swift; sourceTree = "<group>"; };
+		7BA8A71B2E7BEBA30056D79F /* AppTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTableViewCell.swift; sourceTree = "<group>"; };
+		7BA8A71C2E7BEBA30056D79F /* AppTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppTableViewCell.xib; sourceTree = "<group>"; };
+		7BA8A71D2E7BEBA30056D79F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7BA8A71E2E7BEBA30056D79F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7BA8A71F2E7BEBA30056D79F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		7BA8A7202E7BEBA30056D79F /* DeviceAppListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAppListViewController.swift; sourceTree = "<group>"; };
+		7BA8A7212E7BEBA30056D79F /* DeviceAppListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceAppListViewController.xib; sourceTree = "<group>"; };
+		7BA8A7222E7BEBA30056D79F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DeviceList.storyboard; sourceTree = "<group>"; };
+		7BA8A7242E7BEBA30056D79F /* DeviceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListViewController.swift; sourceTree = "<group>"; };
+		7BA8A7252E7BEBA30056D79F /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
+		7BA8A7262E7BEBA30056D79F /* DeviceTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTableCellView.swift; sourceTree = "<group>"; };
+		7BA8A7272E7BEBA30056D79F /* DeviceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceTableViewCell.xib; sourceTree = "<group>"; };
+		7BA8A7282E7BEBA30056D79F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BA8A7292E7BEBA30056D79F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7BA8A72B2E7BEBA30056D79F /* TableEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableEntry.swift; sourceTree = "<group>"; };
+		F01F14F11DB5E01C0076EBE6 /* LapTimerCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LapTimerCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ConnectIQ.framework; sourceTree = "<group>"; };
-		F0709E241E1A0CDD00D255F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Source/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,88 +83,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7BA8A72C2E7BEBA30056D79F /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7BA8A7152E7BEBA30056D79F /* AppDelegate.swift */,
+				7BA8A7162E7BEBA30056D79F /* AppInfo.swift */,
+				7BA8A7172E7BEBA30056D79F /* AppMessageView.swift */,
+				7BA8A7182E7BEBA30056D79F /* AppMessageViewController.swift */,
+				7BA8A7192E7BEBA30056D79F /* AppMessageViewController.xib */,
+				7BA8A71A2E7BEBA30056D79F /* AppMessageViewModel.swift */,
+				7BA8A71B2E7BEBA30056D79F /* AppTableViewCell.swift */,
+				7BA8A71C2E7BEBA30056D79F /* AppTableViewCell.xib */,
+				7BA8A71D2E7BEBA30056D79F /* Assets.xcassets */,
+				7BA8A71E2E7BEBA30056D79F /* Constants.swift */,
+				7BA8A71F2E7BEBA30056D79F /* Default-568h@2x.png */,
+				7BA8A7202E7BEBA30056D79F /* DeviceAppListViewController.swift */,
+				7BA8A7212E7BEBA30056D79F /* DeviceAppListViewController.xib */,
+				7BA8A7232E7BEBA30056D79F /* DeviceList.storyboard */,
+				7BA8A7242E7BEBA30056D79F /* DeviceListViewController.swift */,
+				7BA8A7252E7BEBA30056D79F /* DeviceManager.swift */,
+				7BA8A7262E7BEBA30056D79F /* DeviceTableCellView.swift */,
+				7BA8A7272E7BEBA30056D79F /* DeviceTableViewCell.xib */,
+				7BA8A7282E7BEBA30056D79F /* Info.plist */,
+				7BA8A72A2E7BEBA30056D79F /* LaunchScreen.storyboard */,
+				7BA8A72B2E7BEBA30056D79F /* TableEntry.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		F01F14E81DB5E01C0076EBE6 = {
 			isa = PBXGroup;
 			children = (
-				F01F14F31DB5E01C0076EBE6 /* Source */,
 				F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */,
 				F01F14F21DB5E01C0076EBE6 /* Products */,
+				7BA8A72C2E7BEBA30056D79F /* Source */,
 			);
 			sourceTree = "<group>";
 		};
 		F01F14F21DB5E01C0076EBE6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F01F14F11DB5E01C0076EBE6 /* Garmin-ExampleApp-Swift.app */,
+				F01F14F11DB5E01C0076EBE6 /* LapTimerCompanion.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		F01F14F31DB5E01C0076EBE6 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				F0709DC71E1A097A00D255F5 /* AppDelegate.swift */,
-				F0709DE11E1A097A00D255F5 /* Constants.swift */,
-				F0709E231E1A0CDD00D255F5 /* LaunchScreen.storyboard */,
-				F0709E1D1E1A0AEE00D255F5 /* Device List */,
-				F0709E1E1E1A0AFD00D255F5 /* App List */,
-				F0709E1F1E1A0B0C00D255F5 /* App Message */,
-				F0709E201E1A0B3700D255F5 /* Supporting Files */,
-			);
-			name = Source;
-			path = "Cruise di2";
-			sourceTree = "<group>";
-		};
-		F0709E1D1E1A0AEE00D255F5 /* Device List */ = {
-			isa = PBXGroup;
-			children = (
-				F0709DDA1E1A097A00D255F5 /* DeviceList.storyboard */,
-				F0709DE61E1A097A00D255F5 /* DeviceListViewController.swift */,
-				F0709DE71E1A097A00D255F5 /* DeviceManager.swift */,
-				F0709DE81E1A097A00D255F5 /* DeviceTableCellView.swift */,
-				F0709DE91E1A097A00D255F5 /* DeviceTableViewCell.xib */,
-			);
-			name = "Device List";
-			sourceTree = "<group>";
-		};
-		F0709E1E1E1A0AFD00D255F5 /* App List */ = {
-			isa = PBXGroup;
-			children = (
-				F0709DC81E1A097A00D255F5 /* AppInfo.swift */,
-				F0709DCB1E1A097A00D255F5 /* AppTableViewCell.swift */,
-				F0709DCC1E1A097A00D255F5 /* AppTableViewCell.xib */,
-				F0709DE41E1A097A00D255F5 /* DeviceAppListViewController.swift */,
-				F0709DE51E1A097A00D255F5 /* DeviceAppListViewController.xib */,
-			);
-			name = "App List";
-			sourceTree = "<group>";
-		};
-		F0709E1F1E1A0B0C00D255F5 /* App Message */ = {
-			isa = PBXGroup;
-			children = (
-				F0709DCA1E1A097A00D255F5 /* AppMessageViewController.xib */,
-				F0709DC91E1A097A00D255F5 /* AppMessageViewController.swift */,
-				F0709DEC1E1A097A00D255F5 /* TableEntry.swift */,
-			);
-			name = "App Message";
-			sourceTree = "<group>";
-		};
-		F0709E201E1A0B3700D255F5 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F0709DEB1E1A097A00D255F5 /* Info.plist */,
-				F0709DE31E1A097A00D255F5 /* Default-568h@2x.png */,
-				F0709DCD1E1A097A00D255F5 /* Assets.xcassets */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F01F14F01DB5E01C0076EBE6 /* Garmin-ExampleApp-Swift */ = {
+		F01F14F01DB5E01C0076EBE6 /* LapTimerCompanion */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F01F15031DB5E01C0076EBE6 /* Build configuration list for PBXNativeTarget "Garmin-ExampleApp-Swift" */;
+			buildConfigurationList = F01F15031DB5E01C0076EBE6 /* Build configuration list for PBXNativeTarget "LapTimerCompanion" */;
 			buildPhases = (
 				F01F14ED1DB5E01C0076EBE6 /* Sources */,
 				F01F14EE1DB5E01C0076EBE6 /* Frameworks */,
@@ -171,9 +144,9 @@
 			);
 			dependencies = (
 			);
-			name = "Garmin-ExampleApp-Swift";
+			name = LapTimerCompanion;
 			productName = "Cruise di2";
-			productReference = F01F14F11DB5E01C0076EBE6 /* Garmin-ExampleApp-Swift.app */;
+			productReference = F01F14F11DB5E01C0076EBE6 /* LapTimerCompanion.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -184,7 +157,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = "Doug Williams";
+				ORGANIZATIONNAME = "Jai Sinha";
 				TargetAttributes = {
 					F01F14F01DB5E01C0076EBE6 = {
 						CreatedOnToolsVersion = 8.0;
@@ -199,7 +172,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F01F14EC1DB5E01C0076EBE6 /* Build configuration list for PBXProject "Garmin-ExampleApp-Swift" */;
+			buildConfigurationList = F01F14EC1DB5E01C0076EBE6 /* Build configuration list for PBXProject "LapTimerCompanion" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -213,7 +186,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F01F14F01DB5E01C0076EBE6 /* Garmin-ExampleApp-Swift */,
+				F01F14F01DB5E01C0076EBE6 /* LapTimerCompanion */,
 			);
 		};
 /* End PBXProject section */
@@ -223,14 +196,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0709E0B1E1A097A00D255F5 /* DeviceAppListViewController.xib in Resources */,
-				F0709E251E1A0CDD00D255F5 /* LaunchScreen.storyboard in Resources */,
-				F0709E031E1A097A00D255F5 /* DeviceList.storyboard in Resources */,
-				F0709DF41E1A097A00D255F5 /* AppMessageViewController.xib in Resources */,
-				F0709DF71E1A097A00D255F5 /* Assets.xcassets in Resources */,
-				F0709E091E1A097A00D255F5 /* Default-568h@2x.png in Resources */,
-				F0709DF61E1A097A00D255F5 /* AppTableViewCell.xib in Resources */,
-				F0709E0F1E1A097A00D255F5 /* DeviceTableViewCell.xib in Resources */,
+				7BA8A72D2E7BEBA30056D79F /* DeviceTableViewCell.xib in Resources */,
+				7BA8A72E2E7BEBA30056D79F /* LaunchScreen.storyboard in Resources */,
+				7BA8A72F2E7BEBA30056D79F /* DeviceList.storyboard in Resources */,
+				7BA8A7302E7BEBA30056D79F /* Assets.xcassets in Resources */,
+				7BA8A7322E7BEBA30056D79F /* Default-568h@2x.png in Resources */,
+				7BA8A7332E7BEBA30056D79F /* DeviceAppListViewController.xib in Resources */,
+				7BA8A7342E7BEBA30056D79F /* AppTableViewCell.xib in Resources */,
+				7BA8A7352E7BEBA30056D79F /* AppMessageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,34 +214,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0709E0A1E1A097A00D255F5 /* DeviceAppListViewController.swift in Sources */,
-				F0709E0E1E1A097A00D255F5 /* DeviceTableCellView.swift in Sources */,
-				F0709DF11E1A097A00D255F5 /* AppDelegate.swift in Sources */,
-				F0709E0C1E1A097A00D255F5 /* DeviceListViewController.swift in Sources */,
-				F0709E0D1E1A097A00D255F5 /* DeviceManager.swift in Sources */,
-				F0709E121E1A097A00D255F5 /* TableEntry.swift in Sources */,
-				F0709DF51E1A097A00D255F5 /* AppTableViewCell.swift in Sources */,
-				F0709DF21E1A097A00D255F5 /* AppInfo.swift in Sources */,
-				F0709DF31E1A097A00D255F5 /* AppMessageViewController.swift in Sources */,
-				F0709E071E1A097A00D255F5 /* Constants.swift in Sources */,
+				7BA8A7362E7BEBA30056D79F /* AppInfo.swift in Sources */,
+				7BA8A7372E7BEBA30056D79F /* DeviceListViewController.swift in Sources */,
+				7BA8A7382E7BEBA30056D79F /* AppMessageView.swift in Sources */,
+				7BA8A7392E7BEBA30056D79F /* DeviceTableCellView.swift in Sources */,
+				7BA8A73A2E7BEBA30056D79F /* TableEntry.swift in Sources */,
+				7BA8A73B2E7BEBA30056D79F /* Constants.swift in Sources */,
+				7BA8A73C2E7BEBA30056D79F /* AppTableViewCell.swift in Sources */,
+				7BA8A73D2E7BEBA30056D79F /* DeviceManager.swift in Sources */,
+				7BA8A73E2E7BEBA30056D79F /* AppMessageViewController.swift in Sources */,
+				7BA8A73F2E7BEBA30056D79F /* AppDelegate.swift in Sources */,
+				7BA8A7402E7BEBA30056D79F /* DeviceAppListViewController.swift in Sources */,
+				7BA8A7412E7BEBA30056D79F /* AppMessageViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F0709DDA1E1A097A00D255F5 /* DeviceList.storyboard */ = {
+		7BA8A7232E7BEBA30056D79F /* DeviceList.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F0709DDB1E1A097A00D255F5 /* Base */,
+				7BA8A7222E7BEBA30056D79F /* Base */,
 			);
 			name = DeviceList.storyboard;
 			sourceTree = "<group>";
 		};
-		F0709E231E1A0CDD00D255F5 /* LaunchScreen.storyboard */ = {
+		7BA8A72A2E7BEBA30056D79F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F0709E241E1A0CDD00D255F5 /* Base */,
+				7BA8A7292E7BEBA30056D79F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -383,9 +358,10 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jaisinha.Garmin-ExampleApp-Swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaisinha.LapTimerCompanion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -405,9 +381,10 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jaisinha.Garmin-ExampleApp-Swift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaisinha.LapTimerCompanion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -417,7 +394,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F01F14EC1DB5E01C0076EBE6 /* Build configuration list for PBXProject "Garmin-ExampleApp-Swift" */ = {
+		F01F14EC1DB5E01C0076EBE6 /* Build configuration list for PBXProject "LapTimerCompanion" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F01F15011DB5E01C0076EBE6 /* Debug */,
@@ -426,7 +403,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F01F15031DB5E01C0076EBE6 /* Build configuration list for PBXNativeTarget "Garmin-ExampleApp-Swift" */ = {
+		F01F15031DB5E01C0076EBE6 /* Build configuration list for PBXNativeTarget "LapTimerCompanion" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F01F15041DB5E01C0076EBE6 /* Debug */,

@@ -34,8 +34,8 @@
 
 import Foundation
 
-class TableEntry: NSObject {
-    
+class TableEntry: NSObject, Identifiable {
+    let id = UUID()
     var label: String = "nil"
     var message: Any = ("nil" as Any)
     

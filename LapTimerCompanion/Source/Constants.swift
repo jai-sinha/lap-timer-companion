@@ -34,4 +34,5 @@
 
 import Foundation
 
-let ReturnURLScheme = "garmin-exampleapp-swift" // must match project settings Project Settings -> Info -> URL Types
+let ReturnURLScheme = "laptimercompanion" // must match project settings Project Settings -> Info -> URL Types
+let kMaxLogMessages = 100 // Maximum number of log messages to keep in memory

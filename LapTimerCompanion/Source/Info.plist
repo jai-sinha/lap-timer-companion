@@ -26,10 +26,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>None</string>
 			<key>CFBundleURLName</key>
-			<string>com.jaisinha.Garmin-ExampleApp-Swift</string>
+			<string>com.jaisinha.LapTimerCompanion</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>garmin-exampleapp-swift</string>
+				<string>laptimercompanion</string>
 			</array>
 		</dict>
 	</array>
