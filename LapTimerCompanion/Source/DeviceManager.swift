@@ -71,6 +71,7 @@ class DeviceManager: NSObject {
                     print("status>>> \(ConnectIQ.sharedInstance().getDeviceStatus(device).rawValue)")
                 }
                 self.saveDevicesToFileSystem()
+                NotificationCenter.default.post(name: NSNotification.Name("DeviceManagerDevicesChanged"), object: nil)
                 self.delegate?.devicesChanged()
                 return true
             }
@@ -90,19 +91,18 @@ class DeviceManager: NSObject {
             print("No device restoration file found.")
             return
         }
-        
+
         if restoredDevices.count > 0 {
             print("Restored saved devices:")
             for device in restoredDevices {
                 print("\(device)")
             }
             self.devices = restoredDevices
-        }
-        else {
+        } else {
             print("No saved devices to restore.")
             self.devices.removeAll()
         }
-        self.delegate!.devicesChanged()
+        self.delegate?.devicesChanged() // Use optional chaining to avoid crash
     }
     
     func devicesFilePath() -> String {
@@ -118,6 +118,6 @@ class DeviceManager: NSObject {
                 print("There was an error creating the directory \(appSupportDirectory) with error: \(error)")
             }
         }
-        return appSupportDirectory.appendingPathComponent(kDevicesFileName).absoluteString
+        return appSupportDirectory.appendingPathComponent(kDevicesFileName).path
     }
 }

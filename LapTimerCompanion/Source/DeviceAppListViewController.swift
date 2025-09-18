@@ -75,10 +75,15 @@ class DeviceAppListViewController: UIViewController, IQDeviceEventDelegate, UITa
     override func viewWillAppear(_ animated: Bool) {
         ConnectIQ.sharedInstance().register(forDeviceEvents: self.device, delegate: self)
         self.tableView.reloadData()
+        let group = DispatchGroup()
         for appInfo: AppInfo in self.appInfos.allValues as! [AppInfo] {
-            appInfo.updateStatus(withCompletion: {(appInfo: AppInfo) -> Void in
-                self.tableView.reloadData()
+            group.enter()
+            appInfo.updateStatus(withCompletion: { (appInfo: AppInfo) -> Void in
+                group.leave()
             })
+        }
+        group.notify(queue: .main) {
+            self.tableView.reloadData()
         }
     }
     

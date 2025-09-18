@@ -35,6 +35,7 @@
 
 import UIKit
 import ConnectIQ
+import SwiftUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, IQUIOverrideDelegate {
@@ -44,13 +45,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IQUIOverrideDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         ConnectIQ.sharedInstance().initialize(withUrlScheme: ReturnURLScheme, uiOverrideDelegate: nil)
         DeviceManager.sharedInstance.restoreDevicesFromFileSystem()
-        let viewController = DeviceListViewController.deviceListViewController()
-        let controller = UINavigationController()
-        controller.pushViewController(viewController, animated: false)
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = controller
-        window.makeKeyAndVisible()
+        let viewModel = DeviceListViewModel()
+        let rootView = DeviceListView(viewModel: viewModel)
+        window.rootViewController = UIHostingController(rootView: rootView)
         self.window = window
+        window.makeKeyAndVisible()
         return true
     }
     
@@ -86,4 +86,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IQUIOverrideDelegate {
         ConnectIQ.sharedInstance().showAppStoreForConnectMobile()
     }
 }
-

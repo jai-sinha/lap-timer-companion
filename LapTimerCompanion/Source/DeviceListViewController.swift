@@ -113,12 +113,8 @@ class DeviceListViewController: UIViewController, DeviceManagerDelegate, IQDevic
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let device = self.deviceManager.devices[indexPath.row]
-        let status = ConnectIQ.sharedInstance().getDeviceStatus(device)
-        if status == .connected {
-            let vc = DeviceAppListViewController(device)
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        // No longer push a new view controller; just show the device as selected
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func devicesChanged() {
