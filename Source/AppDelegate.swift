@@ -47,12 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IQUIOverrideDelegate {
         // Initialize ConnectIQ with proper UI delegate
         ConnectIQ.sharedInstance().initialize(withUrlScheme: ReturnURLScheme, uiOverrideDelegate: self)
         DeviceManager.sharedInstance.restoreDevicesFromFileSystem()
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        let viewModel = DeviceListViewModel()
-        let rootView = DeviceListView(viewModel: viewModel)
-        window.rootViewController = UIHostingController(rootView: rootView)
-        self.window = window
-        window.makeKeyAndVisible()
+        // Window and rootView setup moved to SceneDelegate
         return true
     }
     
