@@ -43,7 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IQUIOverrideDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        ConnectIQ.sharedInstance().initialize(withUrlScheme: ReturnURLScheme, uiOverrideDelegate: nil)
+        // Initialize ConnectIQ with proper UI delegate
+        ConnectIQ.sharedInstance().initialize(withUrlScheme: ReturnURLScheme, uiOverrideDelegate: self)
         DeviceManager.sharedInstance.restoreDevicesFromFileSystem()
         let window = UIWindow(frame: UIScreen.main.bounds)
         let viewModel = DeviceListViewModel()
@@ -55,8 +56,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IQUIOverrideDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        print("Received URL: \(url)")
-        return DeviceManager.sharedInstance.handleOpenURL(url, options: options)
+        print("AppDelegate received URL: \(url)")
+        print("Source application: \(options[.sourceApplication] as? String ?? "nil")")
+        
+        let result = DeviceManager.sharedInstance.handleOpenURL(url, options: options)
+        print("DeviceManager handled URL with result: \(result)")
+        
+        // If this is returning from device selection, refresh the UI
+        if result {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                NotificationCenter.default.post(name: NSNotification.Name("DeviceManagerDevicesChanged"), object: nil)
+            }
+        }
+        
+        return result
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -82,7 +95,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, IQUIOverrideDelegate {
     }
 
     func needsToInstallConnectMobile() {
-        // Show alert to user with choice to install GCM if (alert.result == YES) {
-        ConnectIQ.sharedInstance().showAppStoreForConnectMobile()
+        print("needsToInstallConnectMobile called - showing GCM install prompt")
+        
+        DispatchQueue.main.async {
+            let alert = UIAlertController(
+                title: "Install Garmin Connect Mobile",
+                message: "This app requires Garmin Connect Mobile to communicate with your device. Would you like to install it?",
+                preferredStyle: .alert
+            )
+            
+            alert.addAction(UIAlertAction(title: "Install", style: .default) { _ in
+                ConnectIQ.sharedInstance().showAppStoreForConnectMobile()
+            })
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            
+            self.window?.rootViewController?.present(alert, animated: true)
+        }
     }
 }

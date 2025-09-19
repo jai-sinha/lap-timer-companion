@@ -41,7 +41,7 @@ protocol DeviceManagerDelegate {
     func devicesChanged()
 }
 
-class DeviceManager: NSObject {
+class DeviceManager: NSObject, IQDeviceEventDelegate {
     
     var devices = [IQDevice]()
     var delegate: DeviceManagerDelegate?
@@ -49,27 +49,27 @@ class DeviceManager: NSObject {
     static let sharedInstance = DeviceManager()
    
     private override init() {
-        // no op
+        super.init()
     }
     
     func handleOpenURL(_ url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         guard (options[.sourceApplication] as? String) == nil || (options[.sourceApplication] as? String) == IQGCMBundle else {
-            print("handleOpenURL: Unexpected source application; disregarding open request.")
             return false
         }
-        if (url.scheme! == ReturnURLScheme) {
-            
+        
+        if url.scheme == ReturnURLScheme {
             let devices = ConnectIQ.sharedInstance().parseDeviceSelectionResponse(from: url)
-            dump(devices)
+            
             if let devices = devices, devices.count > 0 {
-                print("Forgetting \(Int(self.devices.count)) known devices.")
                 self.devices.removeAll()
-                for (index, device) in devices.enumerated() {
+                
+                for device in devices {
                     guard let device = device as? IQDevice else { continue }
-                    print("Received device (\(index+1) of \(devices.count): [\(device.uuid), \(device.modelName), \(device.friendlyName)]")
+                    
                     self.devices.append(device)
-                    print("status>>> \(ConnectIQ.sharedInstance().getDeviceStatus(device).rawValue)")
+                    ConnectIQ.sharedInstance().register(forDeviceEvents: device, delegate: self)
                 }
+                
                 self.saveDevicesToFileSystem()
                 NotificationCenter.default.post(name: NSNotification.Name("DeviceManagerDevicesChanged"), object: nil)
                 self.delegate?.devicesChanged()
@@ -80,29 +80,42 @@ class DeviceManager: NSObject {
     }
     
     func saveDevicesToFileSystem() {
-        print("Saving known devices.")
-        if !NSKeyedArchiver.archiveRootObject(devices, toFile: self.devicesFilePath()) {
-            print("Failed to save devices file.")
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: devices, requiringSecureCoding: false)
+            try data.write(to: URL(fileURLWithPath: self.devicesFilePath()))
+        } catch {
+            print("Failed to save devices: \(error)")
         }
     }
     
     func restoreDevicesFromFileSystem() {
-        guard let restoredDevices = NSKeyedUnarchiver.unarchiveObject(withFile: self.devicesFilePath()) as? [IQDevice] else {
-            print("No device restoration file found.")
+        let filePath = self.devicesFilePath()
+        
+        guard FileManager.default.fileExists(atPath: filePath) else {
             return
         }
-
-        if restoredDevices.count > 0 {
-            print("Restored saved devices:")
-            for device in restoredDevices {
-                print("\(device)")
+        
+        do {
+            let data = try Data(contentsOf: URL(fileURLWithPath: filePath))
+            guard let restoredDevices = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [IQDevice] else {
+                return
             }
-            self.devices = restoredDevices
-        } else {
-            print("No saved devices to restore.")
+            
+            if restoredDevices.count > 0 {
+                self.devices = restoredDevices
+                
+                // Re-register restored devices for status events
+                for device in devices {
+                    ConnectIQ.sharedInstance().register(forDeviceEvents: device, delegate: self)
+                }
+            }
+            
+            NotificationCenter.default.post(name: NSNotification.Name("DeviceManagerDevicesChanged"), object: nil)
+            self.delegate?.devicesChanged()
+        } catch {
+            print("Error restoring devices: \(error)")
             self.devices.removeAll()
         }
-        self.delegate?.devicesChanged() // Use optional chaining to avoid crash
     }
     
     func devicesFilePath() -> String {
@@ -110,7 +123,6 @@ class DeviceManager: NSObject {
         let appSupportDirectory = URL(fileURLWithPath: paths[0])
         let dirExists = (try? appSupportDirectory.checkResourceIsReachable()) ?? false
         if !dirExists {
-            print("DeviceManager.devicesFilePath appSupportDirectory \(appSupportDirectory) does not exist, creating... ")
             do {
                 try FileManager.default.createDirectory(at: appSupportDirectory, withIntermediateDirectories: true, attributes: nil)
             }
@@ -119,5 +131,18 @@ class DeviceManager: NSObject {
             }
         }
         return appSupportDirectory.appendingPathComponent(kDevicesFileName).path
+    }
+    
+    func refreshAllDeviceStatuses() {
+        NotificationCenter.default.post(name: NSNotification.Name("DeviceManagerDevicesChanged"), object: nil)
+    }
+    
+    // MARK: - IQDeviceEventDelegate
+    
+    func deviceStatusChanged(_ device: IQDevice, status: IQDeviceStatus) {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: NSNotification.Name("DeviceManagerDevicesChanged"), object: nil)
+            self.delegate?.devicesChanged()
+        }
     }
 }

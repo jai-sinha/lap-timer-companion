@@ -6,32 +6,25 @@ struct DeviceListView: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 8) {
-                if !viewModel.connectedDevices.isEmpty {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Connected Device(s):")
-                            .font(.subheadline)
-                            .foregroundColor(.green)
-                        ForEach(viewModel.connectedDevices, id: \.uuid) { device in
-                            Text(device.friendlyName)
-                                .font(.headline)
-                        }
-                    }
-                    .padding(.bottom, 8)
-                }
-                List(viewModel.devices, id: \.uuid) { device in
-                    DeviceRowView(device: device, status: viewModel.status(for: device))
-                }
-            }
-            .navigationTitle("Connect IQ Devices")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+            VStack(alignment: .leading, spacing: 0) {
+                HStack {
+                    Text("Connect IQ Devices")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    Spacer()
                     Button(action: {
                         viewModel.showDeviceSelection()
                     }) {
                         Label("Find Devices", systemImage: "plus.circle")
+                            .labelStyle(.titleAndIcon)
+                            .font(.body)
                     }
                 }
+                .padding([.top, .horizontal])
+                List(viewModel.devices, id: \.uuid) { device in
+                    DeviceRowView(device: device, status: viewModel.status(for: device))
+                }
+                .listStyle(.plain)
             }
             .onAppear {
                 viewModel.refreshStatuses()

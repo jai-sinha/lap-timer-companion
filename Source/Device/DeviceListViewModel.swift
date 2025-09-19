@@ -11,30 +11,57 @@ class DeviceListViewModel: ObservableObject {
     init() {
         // Initial load
         self.devices = deviceManager.devices
+        print("DeviceListViewModel init: loaded \(devices.count) devices")
+        
         for device in devices {
-            statuses[device.uuid] = ConnectIQ.sharedInstance().getDeviceStatus(device)
+            let status = ConnectIQ.sharedInstance().getDeviceStatus(device)
+            statuses[device.uuid] = status
+            print("Initial device status - \(device.friendlyName): \(status.rawValue)")
         }
+        
         // Observe device changes
         NotificationCenter.default.addObserver(self, selector: #selector(devicesChanged), name: NSNotification.Name("DeviceManagerDevicesChanged"), object: nil)
     }
     
     @objc func devicesChanged() {
+        print("DeviceListViewModel: devicesChanged notification received")
         DispatchQueue.main.async {
             self.devices = self.deviceManager.devices
+            print("Updated device list: \(self.devices.count) devices")
+            
             for device in self.devices {
-                self.statuses[device.uuid] = ConnectIQ.sharedInstance().getDeviceStatus(device)
+                let status = ConnectIQ.sharedInstance().getDeviceStatus(device)
+                self.statuses[device.uuid] = status
+                print("Updated device status - \(device.friendlyName): \(status.rawValue)")
             }
         }
     }
     
     func status(for device: IQDevice) -> IQDeviceStatus {
-        statuses[device.uuid] ?? .notConnected
+        let status = statuses[device.uuid] ?? .notConnected
+        if status == .invalidDevice {
+            print("Device \(device.friendlyName) is showing as invalid - checking again...")
+            // Force a fresh status check for invalid devices
+            let freshStatus = ConnectIQ.sharedInstance().getDeviceStatus(device)
+            if freshStatus != status {
+                print("Fresh status check shows different result: \(freshStatus.rawValue)")
+                statuses[device.uuid] = freshStatus
+                return freshStatus
+            }
+        }
+        return status
     }
     
     func refreshStatuses() {
+        print("DeviceListViewModel: manually refreshing statuses for \(devices.count) devices")
         for device in devices {
-            statuses[device.uuid] = ConnectIQ.sharedInstance().getDeviceStatus(device)
+            let status = ConnectIQ.sharedInstance().getDeviceStatus(device)
+            statuses[device.uuid] = status
+            print("Refreshed status - \(device.friendlyName): \(status.rawValue)")
         }
+        
+        // Also trigger a refresh from DeviceManager
+        deviceManager.refreshAllDeviceStatuses()
     }
     
     func openGCMApp() {
@@ -47,5 +74,19 @@ class DeviceListViewModel: ObservableObject {
     
     var connectedDevices: [IQDevice] {
         devices.filter { status(for: $0) == .connected }
+    }
+    
+    // Add debug method to clear saved devices
+    func clearSavedDevices() {
+        print("Clearing all saved devices for debugging...")
+        deviceManager.devices.removeAll()
+        devices.removeAll()
+        statuses.removeAll()
+        
+        // Clear the saved file
+        let filePath = deviceManager.devicesFilePath()
+        try? FileManager.default.removeItem(atPath: filePath)
+        
+        NotificationCenter.default.post(name: NSNotification.Name("DeviceManagerDevicesChanged"), object: nil)
     }
 }
