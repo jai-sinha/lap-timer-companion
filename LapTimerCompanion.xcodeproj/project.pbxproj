@@ -49,6 +49,7 @@
 		7B09F7D72E7D17A4008AEBAD /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		7B09F7D92E7D19F0008AEBAD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7B09F7DE2E7E0103008AEBAD /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		7B09F7E02E7E0B0C008AEBAD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7BA8A7152E7BEBA30056D79F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BA8A71D2E7BEBA30056D79F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BA8A71E2E7BEBA30056D79F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -126,6 +127,7 @@
 			children = (
 				F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */,
 				7BA8A7552E7CD86D0056D79F /* README.md */,
+				7B09F7E02E7E0B0C008AEBAD /* .gitignore */,
 				F01F14F21DB5E01C0076EBE6 /* Products */,
 				7BA8A72C2E7BEBA30056D79F /* Source */,
 			);
