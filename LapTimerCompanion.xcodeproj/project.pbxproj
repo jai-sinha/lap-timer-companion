@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B09F7CC2E7CDD5B008AEBAD /* AppMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7CB2E7CDD42008AEBAD /* AppMessageViewModel.swift */; };
+		7B09F7CE2E7CDD7B008AEBAD /* AppMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7CD2E7CDD7B008AEBAD /* AppMessageView.swift */; };
+		7B09F7D02E7CDDA8008AEBAD /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7CF2E7CDDA8008AEBAD /* AppInfo.swift */; };
+		7B09F7D22E7CDE0B008AEBAD /* DeviceAppListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7D12E7CDE0B008AEBAD /* DeviceAppListViewModel.swift */; };
+		7B09F7D42E7CDE30008AEBAD /* TableEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7D32E7CDE30008AEBAD /* TableEntry.swift */; };
 		7BA8A7302E7BEBA30056D79F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A71D2E7BEBA30056D79F /* Assets.xcassets */; };
 		7BA8A73B2E7BEBA30056D79F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A71E2E7BEBA30056D79F /* Constants.swift */; };
 		7BA8A73D2E7BEBA30056D79F /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7252E7BEBA30056D79F /* DeviceManager.swift */; };
@@ -33,6 +38,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7B09F7CB2E7CDD42008AEBAD /* AppMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMessageViewModel.swift; sourceTree = "<group>"; };
+		7B09F7CD2E7CDD7B008AEBAD /* AppMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMessageView.swift; sourceTree = "<group>"; };
+		7B09F7CF2E7CDDA8008AEBAD /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		7B09F7D12E7CDE0B008AEBAD /* DeviceAppListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAppListViewModel.swift; sourceTree = "<group>"; };
+		7B09F7D32E7CDE30008AEBAD /* TableEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableEntry.swift; sourceTree = "<group>"; };
 		7BA8A7152E7BEBA30056D79F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BA8A71D2E7BEBA30056D79F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BA8A71E2E7BEBA30056D79F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -58,13 +68,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B09F7CA2E7CDD36008AEBAD /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7B09F7CF2E7CDDA8008AEBAD /* AppInfo.swift */,
+				7B09F7CD2E7CDD7B008AEBAD /* AppMessageView.swift */,
+				7B09F7CB2E7CDD42008AEBAD /* AppMessageViewModel.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		7BA8A72C2E7BEBA30056D79F /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				7BA8A7522E7CD64B0056D79F /* Assets */,
+				7BA8A7282E7BEBA30056D79F /* Info.plist */,
 				7BA8A7152E7BEBA30056D79F /* AppDelegate.swift */,
 				7BA8A71E2E7BEBA30056D79F /* Constants.swift */,
-				7BA8A7282E7BEBA30056D79F /* Info.plist */,
+				7B09F7D32E7CDE30008AEBAD /* TableEntry.swift */,
+				7B09F7CA2E7CDD36008AEBAD /* App */,
+				7BA8A7522E7CD64B0056D79F /* Assets */,
 				7BA8A7512E7CD6190056D79F /* Device */,
 			);
 			path = Source;
@@ -73,6 +95,7 @@
 		7BA8A7512E7CD6190056D79F /* Device */ = {
 			isa = PBXGroup;
 			children = (
+				7B09F7D12E7CDE0B008AEBAD /* DeviceAppListViewModel.swift */,
 				7BA8A7252E7BEBA30056D79F /* DeviceManager.swift */,
 				7BA8A74B2E7CCC600056D79F /* DeviceListView.swift */,
 				7BA8A7482E7CC9230056D79F /* DeviceListViewModel.swift */,
@@ -92,8 +115,8 @@
 		F01F14E81DB5E01C0076EBE6 = {
 			isa = PBXGroup;
 			children = (
-				7BA8A7552E7CD86D0056D79F /* README.md */,
 				F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */,
+				7BA8A7552E7CD86D0056D79F /* README.md */,
 				F01F14F21DB5E01C0076EBE6 /* Products */,
 				7BA8A72C2E7BEBA30056D79F /* Source */,
 			);
@@ -187,11 +210,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B09F7CC2E7CDD5B008AEBAD /* AppMessageViewModel.swift in Sources */,
+				7B09F7D22E7CDE0B008AEBAD /* DeviceAppListViewModel.swift in Sources */,
 				7BA8A74A2E7CC9230056D79F /* DeviceListViewModel.swift in Sources */,
 				7BA8A74C2E7CCC600056D79F /* DeviceListView.swift in Sources */,
 				7BA8A73B2E7BEBA30056D79F /* Constants.swift in Sources */,
 				7BA8A73D2E7BEBA30056D79F /* DeviceManager.swift in Sources */,
+				7B09F7D02E7CDDA8008AEBAD /* AppInfo.swift in Sources */,
 				7BA8A73F2E7BEBA30056D79F /* AppDelegate.swift in Sources */,
+				7B09F7CE2E7CDD7B008AEBAD /* AppMessageView.swift in Sources */,
+				7B09F7D42E7CDE30008AEBAD /* TableEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

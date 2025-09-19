@@ -9,4 +9,4 @@ This is the companion app for my [lap-timer](https://github.com/jai-sinha/lap-ti
 
 ## Notes
 
-- This project heavily borrows from this example's Swift implementation of the Connect IQ iOS SDK (as opposed to the Objective-C example provided by Garmin). (Thanks, Doug!)
+- This project borrows from [this example's](https://github.com/dougw/Garmin-ExampleApp-Swift) Swift implementation of the Connect IQ iOS SDK (as opposed to the Objective-C example provided by Garmin). (Thanks, Doug!)
