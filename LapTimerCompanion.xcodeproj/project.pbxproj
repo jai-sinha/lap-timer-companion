@@ -176,10 +176,9 @@
 			};
 			buildConfigurationList = F01F14EC1DB5E01C0076EBE6 /* Build configuration list for PBXProject "LapTimerCompanion" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);

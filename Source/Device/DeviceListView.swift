@@ -1,3 +1,11 @@
+//
+//  AppMessageViewModel.swift
+//  LapTimerCompanion
+//
+//  Created by Jai Sinha on 9/18/25.
+//  Copyright © 2025 Jai Sinha. All rights reserved.
+//
+
 import SwiftUI
 import ConnectIQ
 

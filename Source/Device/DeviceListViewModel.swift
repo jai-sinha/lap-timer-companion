@@ -1,3 +1,11 @@
+//
+//  AppMessageViewModel.swift
+//  LapTimerCompanion
+//
+//  Created by Jai Sinha on 9/18/25.
+//  Copyright © 2025 Jai Sinha. All rights reserved.
+//
+
 import Foundation
 import ConnectIQ
 import Combine
@@ -16,7 +24,6 @@ class DeviceListViewModel: ObservableObject {
         for device in devices {
             let status = ConnectIQ.sharedInstance().getDeviceStatus(device)
             statuses[device.uuid] = status
-            print("Initial device status - \(device.friendlyName): \(status.rawValue)")
         }
         
         // Observe device changes
@@ -32,7 +39,6 @@ class DeviceListViewModel: ObservableObject {
             for device in self.devices {
                 let status = ConnectIQ.sharedInstance().getDeviceStatus(device)
                 self.statuses[device.uuid] = status
-                print("Updated device status - \(device.friendlyName): \(status.rawValue)")
             }
         }
     }
@@ -40,7 +46,6 @@ class DeviceListViewModel: ObservableObject {
     func status(for device: IQDevice) -> IQDeviceStatus {
         let status = statuses[device.uuid] ?? .notConnected
         if status == .invalidDevice {
-            print("Device \(device.friendlyName) is showing as invalid - checking again...")
             // Force a fresh status check for invalid devices
             let freshStatus = ConnectIQ.sharedInstance().getDeviceStatus(device)
             if freshStatus != status {
@@ -57,7 +62,6 @@ class DeviceListViewModel: ObservableObject {
         for device in devices {
             let status = ConnectIQ.sharedInstance().getDeviceStatus(device)
             statuses[device.uuid] = status
-            print("Refreshed status - \(device.friendlyName): \(status.rawValue)")
         }
         
         // Also trigger a refresh from DeviceManager

@@ -2,6 +2,7 @@
 //  DeviceManager.swift
 //  Garmin-ExampleApp-Swift
 //  1/1/2017
+//  Modified in 2025 by Jai Sinha
 //
 //  The following code is a fully-functional port of Garmin's iOS Example App
 //  originally written in Objective-C:
@@ -119,7 +120,7 @@ class DeviceManager: NSObject, IQDeviceEventDelegate {
     }
     
     func devicesFilePath() -> String {
-        var paths = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
         let appSupportDirectory = URL(fileURLWithPath: paths[0])
         let dirExists = (try? appSupportDirectory.checkResourceIsReachable()) ?? false
         if !dirExists {
