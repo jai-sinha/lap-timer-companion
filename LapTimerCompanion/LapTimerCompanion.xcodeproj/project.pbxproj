@@ -7,11 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7BA8A72D2E7BEBA30056D79F /* DeviceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A7272E7BEBA30056D79F /* DeviceTableViewCell.xib */; };
-		7BA8A72E2E7BEBA30056D79F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A72A2E7BEBA30056D79F /* LaunchScreen.storyboard */; };
 		7BA8A7302E7BEBA30056D79F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A71D2E7BEBA30056D79F /* Assets.xcassets */; };
-		7BA8A7342E7BEBA30056D79F /* AppTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A71C2E7BEBA30056D79F /* AppTableViewCell.xib */; };
-		7BA8A7352E7BEBA30056D79F /* AppMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A7192E7BEBA30056D79F /* AppMessageViewController.xib */; };
 		7BA8A7362E7BEBA30056D79F /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7162E7BEBA30056D79F /* AppInfo.swift */; };
 		7BA8A7382E7BEBA30056D79F /* AppMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7172E7BEBA30056D79F /* AppMessageView.swift */; };
 		7BA8A73A2E7BEBA30056D79F /* TableEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A72B2E7BEBA30056D79F /* TableEntry.swift */; };
@@ -22,7 +18,7 @@
 		7BA8A7452E7CC75F0056D79F /* DeviceAppListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7422E7CC7150056D79F /* DeviceAppListView.swift */; };
 		7BA8A74A2E7CC9230056D79F /* DeviceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7482E7CC9230056D79F /* DeviceListViewModel.swift */; };
 		7BA8A74C2E7CCC600056D79F /* DeviceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A74B2E7CCC600056D79F /* DeviceListView.swift */; };
-		7BA8A74E2E7CCDFB0056D79F /* DeviceAppListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A74D2E7CCDFB0056D79F /* DeviceAppListViewController.xib */; };
+		7BA8A7502E7CD4290056D79F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A74F2E7CD4290056D79F /* LaunchScreen.storyboard */; };
 		F0709E221E1A0C4800D255F5 /* ConnectIQ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */; };
 		F0709E271E1A0D1200D255F5 /* ConnectIQ.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -45,25 +41,16 @@
 		7BA8A7152E7BEBA30056D79F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BA8A7162E7BEBA30056D79F /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		7BA8A7172E7BEBA30056D79F /* AppMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMessageView.swift; sourceTree = "<group>"; };
-		7BA8A7182E7BEBA30056D79F /* AppMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMessageViewController.swift; sourceTree = "<group>"; };
-		7BA8A7192E7BEBA30056D79F /* AppMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppMessageViewController.xib; sourceTree = "<group>"; };
 		7BA8A71A2E7BEBA30056D79F /* AppMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMessageViewModel.swift; sourceTree = "<group>"; };
-		7BA8A71B2E7BEBA30056D79F /* AppTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTableViewCell.swift; sourceTree = "<group>"; };
-		7BA8A71C2E7BEBA30056D79F /* AppTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppTableViewCell.xib; sourceTree = "<group>"; };
 		7BA8A71D2E7BEBA30056D79F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BA8A71E2E7BEBA30056D79F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		7BA8A7202E7BEBA30056D79F /* DeviceAppListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAppListViewController.swift; sourceTree = "<group>"; };
-		7BA8A7242E7BEBA30056D79F /* DeviceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListViewController.swift; sourceTree = "<group>"; };
 		7BA8A7252E7BEBA30056D79F /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
-		7BA8A7262E7BEBA30056D79F /* DeviceTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTableCellView.swift; sourceTree = "<group>"; };
-		7BA8A7272E7BEBA30056D79F /* DeviceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceTableViewCell.xib; sourceTree = "<group>"; };
 		7BA8A7282E7BEBA30056D79F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7BA8A7292E7BEBA30056D79F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BA8A72B2E7BEBA30056D79F /* TableEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableEntry.swift; sourceTree = "<group>"; };
 		7BA8A7422E7CC7150056D79F /* DeviceAppListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAppListView.swift; sourceTree = "<group>"; };
 		7BA8A7482E7CC9230056D79F /* DeviceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListViewModel.swift; sourceTree = "<group>"; };
 		7BA8A74B2E7CCC600056D79F /* DeviceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListView.swift; sourceTree = "<group>"; };
-		7BA8A74D2E7CCDFB0056D79F /* DeviceAppListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceAppListViewController.xib; sourceTree = "<group>"; };
+		7BA8A74F2E7CD4290056D79F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F01F14F11DB5E01C0076EBE6 /* LapTimerCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LapTimerCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ConnectIQ.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,25 +72,16 @@
 			children = (
 				7BA8A7152E7BEBA30056D79F /* AppDelegate.swift */,
 				7BA8A74B2E7CCC600056D79F /* DeviceListView.swift */,
-				7BA8A74D2E7CCDFB0056D79F /* DeviceAppListViewController.xib */,
 				7BA8A7482E7CC9230056D79F /* DeviceListViewModel.swift */,
 				7BA8A7162E7BEBA30056D79F /* AppInfo.swift */,
+				7BA8A74F2E7CD4290056D79F /* LaunchScreen.storyboard */,
 				7BA8A7172E7BEBA30056D79F /* AppMessageView.swift */,
-				7BA8A7182E7BEBA30056D79F /* AppMessageViewController.swift */,
-				7BA8A7192E7BEBA30056D79F /* AppMessageViewController.xib */,
 				7BA8A71A2E7BEBA30056D79F /* AppMessageViewModel.swift */,
-				7BA8A71B2E7BEBA30056D79F /* AppTableViewCell.swift */,
-				7BA8A71C2E7BEBA30056D79F /* AppTableViewCell.xib */,
 				7BA8A71D2E7BEBA30056D79F /* Assets.xcassets */,
 				7BA8A71E2E7BEBA30056D79F /* Constants.swift */,
-				7BA8A7202E7BEBA30056D79F /* DeviceAppListViewController.swift */,
 				7BA8A7422E7CC7150056D79F /* DeviceAppListView.swift */,
-				7BA8A7242E7BEBA30056D79F /* DeviceListViewController.swift */,
 				7BA8A7252E7BEBA30056D79F /* DeviceManager.swift */,
-				7BA8A7262E7BEBA30056D79F /* DeviceTableCellView.swift */,
-				7BA8A7272E7BEBA30056D79F /* DeviceTableViewCell.xib */,
 				7BA8A7282E7BEBA30056D79F /* Info.plist */,
-				7BA8A72A2E7BEBA30056D79F /* LaunchScreen.storyboard */,
 				7BA8A72B2E7BEBA30056D79F /* TableEntry.swift */,
 			);
 			path = Source;
@@ -194,12 +172,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BA8A74E2E7CCDFB0056D79F /* DeviceAppListViewController.xib in Resources */,
-				7BA8A72D2E7BEBA30056D79F /* DeviceTableViewCell.xib in Resources */,
-				7BA8A72E2E7BEBA30056D79F /* LaunchScreen.storyboard in Resources */,
 				7BA8A7302E7BEBA30056D79F /* Assets.xcassets in Resources */,
-				7BA8A7342E7BEBA30056D79F /* AppTableViewCell.xib in Resources */,
-				7BA8A7352E7BEBA30056D79F /* AppMessageViewController.xib in Resources */,
+				7BA8A7502E7CD4290056D79F /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,17 +198,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		7BA8A72A2E7BEBA30056D79F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7BA8A7292E7BEBA30056D79F /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F01F15011DB5E01C0076EBE6 /* Debug */ = {
