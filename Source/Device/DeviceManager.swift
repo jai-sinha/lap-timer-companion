@@ -59,16 +59,18 @@ class DeviceManager: NSObject, IQDeviceEventDelegate {
         }
         
         if url.scheme == ReturnURLScheme {
-            let devices = ConnectIQ.sharedInstance().parseDeviceSelectionResponse(from: url)
+            let newDevices = ConnectIQ.sharedInstance().parseDeviceSelectionResponse(from: url)
             
-            if let devices = devices, devices.count > 0 {
-                self.devices.removeAll()
-                
-                for device in devices {
+            if let newDevices = newDevices, newDevices.count > 0 {
+                // Instead of removing all devices, append only new ones
+                for device in newDevices {
                     guard let device = device as? IQDevice else { continue }
                     
-                    self.devices.append(device)
-                    ConnectIQ.sharedInstance().register(forDeviceEvents: device, delegate: self)
+                    // Check if device is already in the list
+                    if !self.devices.contains(where: { $0.uuid == device.uuid }) {
+                        self.devices.append(device)
+                        ConnectIQ.sharedInstance().register(forDeviceEvents: device, delegate: self)
+                    }
                 }
                 
                 self.saveDevicesToFileSystem()
@@ -98,7 +100,7 @@ class DeviceManager: NSObject, IQDeviceEventDelegate {
         
         do {
             let data = try Data(contentsOf: URL(fileURLWithPath: filePath))
-            guard let restoredDevices = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [IQDevice] else {
+            guard let restoredDevices = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self, IQDevice.self], from: data) as? [IQDevice] else {
                 return
             }
             
@@ -144,6 +146,17 @@ class DeviceManager: NSObject, IQDeviceEventDelegate {
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: NSNotification.Name("DeviceManagerDevicesChanged"), object: nil)
             self.delegate?.devicesChanged()
+        }
+    }
+    
+    func removeDevice(_ device: IQDevice) {
+        if let index = devices.firstIndex(where: { $0.uuid == device.uuid }) {
+            // Properly unregister device events with the delegate parameter
+            ConnectIQ.sharedInstance().unregister(forDeviceEvents: device, delegate: self)
+            devices.remove(at: index)
+            saveDevicesToFileSystem()
+            NotificationCenter.default.post(name: NSNotification.Name("DeviceManagerDevicesChanged"), object: nil)
+            delegate?.devicesChanged()
         }
     }
 }

@@ -14,10 +14,10 @@
 		7B09F7D42E7CDE30008AEBAD /* TableEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7D32E7CDE30008AEBAD /* TableEntry.swift */; };
 		7B09F7D82E7D17A4008AEBAD /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7D72E7D17A4008AEBAD /* AppView.swift */; };
 		7B09F7DA2E7D19F0008AEBAD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7D92E7D19F0008AEBAD /* SceneDelegate.swift */; };
+		7B09F7DD2E7D1C49008AEBAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7152E7BEBA30056D79F /* AppDelegate.swift */; };
 		7BA8A7302E7BEBA30056D79F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A71D2E7BEBA30056D79F /* Assets.xcassets */; };
 		7BA8A73B2E7BEBA30056D79F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A71E2E7BEBA30056D79F /* Constants.swift */; };
 		7BA8A73D2E7BEBA30056D79F /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7252E7BEBA30056D79F /* DeviceManager.swift */; };
-		7BA8A73F2E7BEBA30056D79F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7152E7BEBA30056D79F /* AppDelegate.swift */; };
 		7BA8A74A2E7CC9230056D79F /* DeviceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7482E7CC9230056D79F /* DeviceListViewModel.swift */; };
 		7BA8A74C2E7CCC600056D79F /* DeviceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A74B2E7CCC600056D79F /* DeviceListView.swift */; };
 		7BA8A7502E7CD4290056D79F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A74F2E7CD4290056D79F /* LaunchScreen.storyboard */; };
@@ -215,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B09F7DD2E7D1C49008AEBAD /* AppDelegate.swift in Sources */,
 				7B09F7CC2E7CDD5B008AEBAD /* AppMessageViewModel.swift in Sources */,
 				7B09F7D22E7CDE0B008AEBAD /* DeviceAppListViewModel.swift in Sources */,
 				7BA8A74A2E7CC9230056D79F /* DeviceListViewModel.swift in Sources */,
@@ -223,7 +224,6 @@
 				7BA8A73B2E7BEBA30056D79F /* Constants.swift in Sources */,
 				7BA8A73D2E7BEBA30056D79F /* DeviceManager.swift in Sources */,
 				7B09F7D02E7CDDA8008AEBAD /* AppInfo.swift in Sources */,
-				7BA8A73F2E7BEBA30056D79F /* AppDelegate.swift in Sources */,
 				7B09F7CE2E7CDD7B008AEBAD /* AppMessageView.swift in Sources */,
 				7B09F7D42E7CDE30008AEBAD /* TableEntry.swift in Sources */,
 				7B09F7DA2E7D19F0008AEBAD /* SceneDelegate.swift in Sources */,

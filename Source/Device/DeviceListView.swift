@@ -29,8 +29,11 @@ struct DeviceListView: View {
                     }
                 }
                 .padding([.top, .horizontal])
-                List(viewModel.devices, id: \.uuid) { device in
-                    DeviceRowView(device: device, status: viewModel.status(for: device))
+                List {
+                    ForEach(viewModel.devices, id: \.uuid) { device in
+                        DeviceRowView(device: device, status: viewModel.status(for: device))
+                    }
+                    .onDelete(perform: viewModel.removeDevice)
                 }
                 .listStyle(.plain)
             }

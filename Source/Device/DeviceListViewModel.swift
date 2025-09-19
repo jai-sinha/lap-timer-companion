@@ -93,4 +93,11 @@ class DeviceListViewModel: ObservableObject {
         
         NotificationCenter.default.post(name: NSNotification.Name("DeviceManagerDevicesChanged"), object: nil)
     }
+    
+    func removeDevice(at offsets: IndexSet) {
+        for index in offsets {
+            let device = devices[index]
+            deviceManager.removeDevice(device)
+        }
+    }
 }
