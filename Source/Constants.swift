@@ -37,3 +37,8 @@ import Foundation
 
 let ReturnURLScheme = "laptimercompanion" // must match project settings Project Settings -> Info -> URL Types
 let kMaxLogMessages = 100 // Maximum number of log messages to keep in memory
+
+// Lap Timer Watch App Constants
+let kLapTimerAppUUID = "dc999a91-9c3d-4fb5-9ab7-1f13ff2ba94c"
+let kLapTimerAppName = "Lap Timer"
+let kAppsFileName = "paired_apps"

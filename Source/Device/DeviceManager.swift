@@ -146,7 +146,19 @@ class DeviceManager: NSObject, IQDeviceEventDelegate {
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: NSNotification.Name("DeviceManagerDevicesChanged"), object: nil)
             self.delegate?.devicesChanged()
+            
+            // Automatically pair lap timer app with newly connected devices
+            if status == .connected {
+                AppManager.sharedInstance.pairLapTimerApp(with: device)
+            }
         }
+    }
+    
+    // MARK: - App Integration
+    
+    /// Triggers app pairing for all currently managed devices
+    func pairAppsWithAllDevices() {
+        AppManager.sharedInstance.pairLapTimerWithAllDevices()
     }
     
     func removeDevice(_ device: IQDevice) {

@@ -32,38 +32,79 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
+
+
 import Foundation
 import ConnectIQ
-class AppInfo: NSObject {
-    
-    var name: String = ""
-    var app: IQApp = IQApp()
+
+class AppInfo: NSObject, NSSecureCoding {
+    static var supportsSecureCoding: Bool { true }
+
+    let name: String
+    let appUUIDString: String
+    let deviceUUIDString: String
     var status: IQAppStatus?
-    
-    convenience init(name: String, iqApp app: IQApp) {
-        self.init()
+    var app: IQApp
+
+    init(name: String, iqApp: IQApp) {
         self.name = name
-        self.app = app
+        self.appUUIDString = iqApp.uuid.uuidString
+        self.deviceUUIDString = iqApp.device.uuid.uuidString
+        self.app = iqApp
         self.status = nil
-        getStatus()
+        super.init()
     }
     
-    convenience init(name: String, iqApp app: IQApp, status: IQAppStatus) {
-        self.init()
-        self.name = name
-        self.app = app
-        self.status = status
+    func updateStatus(completion: @escaping (IQAppStatus?) -> Void) {
+        // Log device and app state before status check
+        let deviceName = app.device.friendlyName ?? "Unknown Device"
+        let deviceStatus = ConnectIQ.sharedInstance().getDeviceStatus(app.device)
+        let appUUID = app.uuid.uuidString
+        print("[AppInfo] Checking status for app \(name) (UUID: \(appUUID)) on device \(deviceName) (status: \(deviceStatus.rawValue))")
+        
+        // Check if device is connected
+        if deviceStatus != .connected {
+            print("[AppInfo] Device \(deviceName) is not connected. Cannot check app status.")
+            completion(nil)
+            return
+        }
+        
+        ConnectIQ.sharedInstance().getAppStatus(self.app) { status in
+            if let status = status {
+                print("[AppInfo] Got status for app \(self.name) on device \(deviceName): installed=\(status.isInstalled), version=\(status.version)")
+            } else {
+                print("[AppInfo] Failed to get status for app \(self.name) on device \(deviceName)")
+            }
+            self.status = status
+            completion(status)
+        }
     }
     
-    func getStatus() {
-        ConnectIQ.sharedInstance().getAppStatus(self.app, completion: { (appStatus: IQAppStatus?) in
-            self.status = IQAppStatus()
-        })
+    required convenience init?(coder: NSCoder) {
+        guard
+            let name = coder.decodeObject(of: NSString.self, forKey: "name") as String?,
+            let appUUIDString = coder.decodeObject(of: NSString.self, forKey: "appUUIDString") as String?,
+            let deviceUUIDString = coder.decodeObject(of: NSString.self, forKey: "deviceUUIDString") as String?
+        else {
+            return nil
+        }
+
+        // Reconstruct IQApp from UUIDs and device
+        guard
+            let appUUID = UUID(uuidString: appUUIDString),
+            let deviceUUID = UUID(uuidString: deviceUUIDString),
+            let device = DeviceManager.sharedInstance.devices.first(where: { $0.uuid == deviceUUID })
+        else {
+            return nil
+        }
+
+        guard let iqApp = IQApp(uuid: appUUID, store: appUUID, device: device) else { return nil }
+        self.init(name: name, iqApp: iqApp)
     }
-    func updateStatus(withCompletion completion: @escaping (_ appInfo: AppInfo) -> Void) {
-        ConnectIQ.sharedInstance().getAppStatus(self.app, completion: { (appStatus: IQAppStatus?) in
-            self.status = appStatus
-            completion(self)
-        })
+
+    func encode(with coder: NSCoder) {
+        coder.encode(name, forKey: "name")
+        coder.encode(appUUIDString, forKey: "appUUIDString")
+        coder.encode(deviceUUIDString, forKey: "deviceUUIDString")
     }
 }
