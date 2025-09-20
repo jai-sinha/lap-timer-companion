@@ -11,13 +11,16 @@ import SwiftUI
 
 struct AppMessageView: View {
     @ObservedObject var viewModel: AppMessageViewModel
-    var onCommandSelected: ((TableEntry) -> Void)?
     
     var body: some View {
         VStack(spacing: 0) {
             List(viewModel.tableEntries, id: \.label) { entry in
                 Button(action: {
-                    onCommandSelected?(entry)
+                    if let appInfo = viewModel.selectedAppInfo {
+                        viewModel.sendMessage(entry.message, to: appInfo)
+                    } else {
+                        viewModel.addLog("No app selected for messaging.")
+                    }
                 }) {
                     Text(entry.label)
                 }

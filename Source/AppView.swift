@@ -1,6 +1,14 @@
+//
+//  AppView.swift
+//  LapTimerCompanion
+//
+//  Created by Jai Sinha on 9/18/25.
+
+
 import SwiftUI
 
 struct AppView: View {
+    private let appMessageViewModel = AppMessageViewModel()
     var body: some View {
         VStack(spacing: 0) {
             Text("Lap Timer Companion")
@@ -10,6 +18,8 @@ struct AppView: View {
                 .padding(.bottom, 16)
             Divider()
             DeviceListView(viewModel: DeviceListViewModel())
+            Divider()
+            AppMessageView(viewModel: appMessageViewModel)
         }
     }
 }

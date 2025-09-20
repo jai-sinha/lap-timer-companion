@@ -28,6 +28,12 @@ class DeviceListViewModel: ObservableObject {
         
         // Observe device changes
         NotificationCenter.default.addObserver(self, selector: #selector(devicesChanged), name: NSNotification.Name("DeviceManagerDevicesChanged"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appStatusChanged), name: NSNotification.Name("AppManagerAppStatusChanged"), object: nil)
+    }
+
+    @objc func appStatusChanged() {
+        print("DeviceListViewModel: appStatusChanged notification received")
+        devicesChanged()
     }
     
     @objc func devicesChanged() {

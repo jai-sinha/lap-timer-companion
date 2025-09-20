@@ -7,19 +7,38 @@
 //
 
 import SwiftUI
+import ConnectIQ
 
-class AppMessageViewModel: ObservableObject, AppManagerDelegate {
+class AppMessageViewModel: NSObject, ObservableObject, AppManagerDelegate, IQAppMessageDelegate {
     @Published var tableEntries: [TableEntry]
     @Published var logMessages: [String]
     @Published var pairedApps: [AppInfo] = []
     
-    init(tableEntries: [TableEntry] = [], logMessages: [String] = []) {
+    // The currently selected app for messaging
+    @Published var selectedAppInfo: AppInfo? {
+        didSet {
+            unregisterForMessages()
+            if let appInfo = selectedAppInfo {
+                registerForMessages(appInfo: appInfo)
+            }
+        }
+    }
+    
+    init(tableEntries: [TableEntry] = [], logMessages: [String] = [], selectedAppInfo: AppInfo? = nil) {
         self.tableEntries = tableEntries
         self.logMessages = logMessages
-        
+        self.selectedAppInfo = selectedAppInfo
+        super.init()
         // Set up as delegate for app manager
         AppManager.sharedInstance.delegate = self
         self.pairedApps = AppManager.sharedInstance.pairedApps
+        if let appInfo = selectedAppInfo {
+            registerForMessages(appInfo: appInfo)
+        }
+    }
+    
+    deinit {
+        unregisterForMessages()
     }
     
     func addLog(_ message: String) {
@@ -27,6 +46,35 @@ class AppMessageViewModel: ObservableObject, AppManagerDelegate {
         while logMessages.count > kMaxLogMessages {
             logMessages.removeFirst()
         }
+    }
+    
+    // MARK: - Connect IQ Messaging
+    
+    func sendMessage(_ message: Any, to appInfo: AppInfo) {
+        addLog("Sending message to \(appInfo.name): \(message)")
+        ConnectIQ.sharedInstance().sendMessage(message, to: appInfo.app, progress: { [weak self] sent, total in
+            let percent = 100 * Float(sent) / Float(total)
+            self?.addLog(String(format: "Progress: %02.2f%% - %u/%u", percent, sent, total))
+        }, completion: { [weak self] result in
+            self?.addLog("Send message finished with result: \(result)")
+        })
+    }
+    
+    private func registerForMessages(appInfo: AppInfo) {
+        ConnectIQ.sharedInstance().register(forAppMessages: appInfo.app, delegate: self)
+        addLog("Registered for messages from \(appInfo.name)")
+    }
+    
+    private func unregisterForMessages() {
+        if let appInfo = selectedAppInfo {
+            ConnectIQ.sharedInstance().unregister(forAppMessages: appInfo.app, delegate: self)
+            addLog("Unregistered for messages from \(appInfo.name)")
+        }
+    }
+    
+    // MARK: - IQAppMessageDelegate
+    func receivedMessage(_ message: Any, from app: IQApp) {
+        addLog("Received message from app: \(app): \(message)")
     }
     
     // MARK: - App Management Methods

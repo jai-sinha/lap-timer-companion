@@ -144,12 +144,22 @@ class DeviceManager: NSObject, IQDeviceEventDelegate {
     
     func deviceStatusChanged(_ device: IQDevice, status: IQDeviceStatus) {
         DispatchQueue.main.async {
+            let timestamp = Date()
+            print("[DeviceManager] [\(timestamp)] Device status changed: Name=\(device.friendlyName ?? "Unknown"), UUID=\(device.uuid?.uuidString ?? "nil"), Model=\(device.modelName ?? "Unknown"), Status=\(status) (rawValue: \(status.rawValue))")
             NotificationCenter.default.post(name: NSNotification.Name("DeviceManagerDevicesChanged"), object: nil)
             self.delegate?.devicesChanged()
-            
-            // Automatically pair lap timer app with newly connected devices
             if status == .connected {
+                print("[DeviceManager] Device connected. Attempting to pair Lap Timer app and check status.")
                 AppManager.sharedInstance.pairLapTimerApp(with: device)
+                // Always trigger a status check for the paired app after a short delay
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    if let appInfo = AppManager.sharedInstance.getAppInfo(for: device) {
+                        print("[DeviceManager] Triggering immediate status check for device: \(device.friendlyName ?? "Unknown") after connection.")
+                        AppManager.sharedInstance.checkAppStatus(appInfo: appInfo)
+                    } else {
+                        print("[DeviceManager] No AppInfo found for device: \(device.friendlyName ?? "Unknown") when attempting status check after connection.")
+                    }
+                }
             }
         }
     }
