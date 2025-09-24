@@ -19,32 +19,27 @@ class DeviceListViewModel: ObservableObject {
     init() {
         // Initial load
         self.devices = deviceManager.devices
-        print("DeviceListViewModel init: loaded \(devices.count) devices")
-        
         for device in devices {
             let status = ConnectIQ.sharedInstance().getDeviceStatus(device)
             statuses[device.uuid] = status
+            print("[Bluetooth Debug] Device: \(device.friendlyName ?? "Unknown") UUID: \(device.uuid?.uuidString ?? "nil") Status: \(status) (rawValue: \(status.rawValue))")
         }
-        
         // Observe device changes
         NotificationCenter.default.addObserver(self, selector: #selector(devicesChanged), name: NSNotification.Name("DeviceManagerDevicesChanged"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appStatusChanged), name: NSNotification.Name("AppManagerAppStatusChanged"), object: nil)
     }
 
     @objc func appStatusChanged() {
-        print("DeviceListViewModel: appStatusChanged notification received")
         devicesChanged()
     }
     
     @objc func devicesChanged() {
-        print("DeviceListViewModel: devicesChanged notification received")
         DispatchQueue.main.async {
             self.devices = self.deviceManager.devices
-            print("Updated device list: \(self.devices.count) devices")
-            
             for device in self.devices {
                 let status = ConnectIQ.sharedInstance().getDeviceStatus(device)
                 self.statuses[device.uuid] = status
+                print("[Bluetooth Debug] Device: \(device.friendlyName ?? "Unknown") UUID: \(device.uuid?.uuidString ?? "nil") Status: \(status) (rawValue: \(status.rawValue))")
             }
         }
     }
@@ -55,7 +50,6 @@ class DeviceListViewModel: ObservableObject {
             // Force a fresh status check for invalid devices
             let freshStatus = ConnectIQ.sharedInstance().getDeviceStatus(device)
             if freshStatus != status {
-                print("Fresh status check shows different result: \(freshStatus.rawValue)")
                 statuses[device.uuid] = freshStatus
                 return freshStatus
             }

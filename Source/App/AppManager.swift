@@ -15,16 +15,31 @@ protocol AppManagerDelegate: AnyObject {
     func appInstallationStatusChanged()
 }
 
-class AppManager: NSObject, ObservableObject {
+class AppManager: NSObject, ObservableObject, IQDeviceEventDelegate {
     @Published var pairedApps: [AppInfo] = []
     @Published var isChecking = false
     
     weak var delegate: AppManagerDelegate?
     static let sharedInstance = AppManager()
     
+    private(set) var isConnectIQReady = false
+    
     private override init() {
         super.init()
+        // Initialize ConnectIQ
+        ConnectIQ.sharedInstance().initialize(withUrlScheme: "laptimercompanion", uiOverrideDelegate: nil)
+        // Register for device events for all known devices
+        for device in DeviceManager.sharedInstance.devices {
+            ConnectIQ.sharedInstance().register(forDeviceEvents: device, delegate: self)
+        }
         restoreAppsFromFileSystem()
+    }
+    
+    // MARK: - IQDeviceEventDelegate
+    func deviceStatusChanged(_ device: IQDevice, status: IQDeviceStatus) {
+        // Optionally handle device status changes
+        // You may want to refresh statuses or update UI here
+        print("[Bluetooth Debug] Device status changed: \(device.friendlyName ?? "Unknown") -> \(status.rawValue)")
     }
     
     // MARK: - App Creation and Pairing
@@ -32,7 +47,6 @@ class AppManager: NSObject, ObservableObject {
     /// Creates an IQApp instance for a specific device using the lap timer app UUID
     func createLapTimerApp(for device: IQDevice) -> IQApp? {
         guard let uuid = UUID(uuidString: kLapTimerAppUUID) else {
-            print("Invalid app UUID: \(kLapTimerAppUUID)")
             return nil
         }
         // Use the new ConnectIQ SDK initializer
@@ -42,21 +56,15 @@ class AppManager: NSObject, ObservableObject {
     /// Pairs the lap timer app with all connected devices
     func pairLapTimerWithAllDevices() {
         let devices = DeviceManager.sharedInstance.devices
-        print("[AppManager] Attempting to pair with all devices. Device count: \(devices.count)")
         for device in devices {
-            logDeviceInfo(device)
             pairLapTimerApp(with: device)
         }
-        logAllPairedDevices()
     }
     
     /// Pairs the lap timer app with a specific device
     func pairLapTimerApp(with device: IQDevice) {
-        logDeviceInfo(device)
         let deviceName = device.friendlyName ?? "Unknown Device"
-        print("[AppManager] Attempting to pair Lap Timer app with device: \(deviceName)")
         guard let app = createLapTimerApp(for: device) else {
-            print("[AppManager] Failed to create app for device: \(deviceName)")
             return
         }
         // Check if this app is already paired
@@ -66,13 +74,9 @@ class AppManager: NSObject, ObservableObject {
         if existingApp == nil {
             let appInfo = AppInfo(name: kLapTimerAppName, iqApp: app)
             pairedApps.append(appInfo)
-            print("[AppManager] App paired and saved for device: \(deviceName)")
-            logAllPairedDevices()
             saveAppsToFileSystem()
             // Check the app status immediately
             checkAppStatus(appInfo: appInfo)
-        } else {
-            print("[AppManager] App already paired with device: \(deviceName)")
         }
     }
     
@@ -80,37 +84,22 @@ class AppManager: NSObject, ObservableObject {
     
     /// Checks the status of a specific app
     func checkAppStatus(appInfo: AppInfo) {
-        guard let device = appInfo.app.device else {
-            print("[AppManager] AppInfo has no associated device. Cannot check status.")
-            return
-        }
-        let deviceName = device.friendlyName ?? "Unknown Device"
+        guard let device = appInfo.app.device else { return }
         let connectionStatus = getConnectionStatus(for: device)
-        print("[AppManager] Checking app status for \(appInfo.name) on device: \(deviceName) (Connection: \(connectionStatus))")
-        logDeviceInfo(device)
         isChecking = true
         // Only check status if device is connected
         guard connectionStatus == "Connected" else {
-            print("[AppManager] Device \(deviceName) is not connected. Skipping app status check.")
             isChecking = false
             appInfo.status = nil
             delegate?.appStatusChanged(appInfo)
             NotificationCenter.default.post(name: NSNotification.Name("AppManagerAppStatusChanged"), object: nil)
             return
         }
-        print("[AppManager] Calling getAppStatus for app: \(appInfo.name) on device: \(deviceName)")
         ConnectIQ.sharedInstance().getAppStatus(appInfo.app) { [weak self] (appStatus: IQAppStatus?) in
             DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
                 strongSelf.isChecking = false
                 appInfo.status = appStatus
-                if let status = appStatus {
-                    let version = status.version
-                    let installState = status.isInstalled ? "Installed" : "Not Installed"
-                    print("[AppManager] getAppStatus SUCCESS: \(appInfo.name) on \(deviceName): Status=\(installState), Version=\(version)")
-                } else {
-                    print("[AppManager] getAppStatus FAILURE: \(appInfo.name) on \(deviceName) (appStatus is nil)")
-                }
                 strongSelf.delegate?.appStatusChanged(appInfo)
                 NotificationCenter.default.post(name: NSNotification.Name("AppManagerAppStatusChanged"), object: nil)
             }
@@ -119,8 +108,6 @@ class AppManager: NSObject, ObservableObject {
     
     /// Checks status for all paired apps
     func checkAllAppStatuses() {
-        print("[AppManager] Checking status for all paired apps ...")
-        logAllPairedDevices()
         for appInfo in pairedApps {
             checkAppStatus(appInfo: appInfo)
         }
@@ -136,10 +123,8 @@ class AppManager: NSObject, ObservableObject {
     
     /// Removes a paired app
     func removePairedApp(_ appInfo: AppInfo) {
-        print("[AppManager] Removing paired app for device: \(appInfo.app.device.friendlyName ?? "Unknown Device")")
         if let index = pairedApps.firstIndex(where: { $0.app.device.uuid == appInfo.app.device.uuid }) {
             pairedApps.remove(at: index)
-            logAllPairedDevices()
             saveAppsToFileSystem()
         }
     }
@@ -255,6 +240,9 @@ extension AppManager {
     
     /// Returns the connection status for a device
     func getConnectionStatus(for device: IQDevice) -> String {
+        if !isConnectIQReady {
+            return "Bluetooth Not Ready"
+        }
         switch ConnectIQ.sharedInstance().getDeviceStatus(device) {
         case .connected:
             return "Connected"
@@ -272,15 +260,6 @@ extension AppManager {
     }
     
     // Helper to log detailed device info
-    private func logDeviceInfo(_ device: IQDevice) {
-        print("[DeviceInfo] Name: \(device.friendlyName ?? "Unknown") | UUID: \(device.uuid) | Model: \(device.modelName ?? "Unknown") | Status: \(ConnectIQ.sharedInstance().getDeviceStatus(device))")
-    }
-
-    // Helper to log all paired devices
-    private func logAllPairedDevices() {
-        print("[AppManager] Paired devices:")
-        for appInfo in pairedApps {
-            logDeviceInfo(appInfo.app.device)
-        }
-    }
+    private func logDeviceInfo(_ device: IQDevice) {}
+    private func logAllPairedDevices() {}
 }

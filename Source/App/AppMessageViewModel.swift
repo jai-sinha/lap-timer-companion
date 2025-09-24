@@ -24,6 +24,9 @@ class AppMessageViewModel: NSObject, ObservableObject, AppManagerDelegate, IQApp
         }
     }
     
+    // Track the latest received message
+    @Published var latestReceivedMessage: (message: Any, app: IQApp)?
+    
     init(tableEntries: [TableEntry] = [], logMessages: [String] = [], selectedAppInfo: AppInfo? = nil) {
         self.tableEntries = tableEntries
         self.logMessages = logMessages
@@ -75,6 +78,7 @@ class AppMessageViewModel: NSObject, ObservableObject, AppManagerDelegate, IQApp
     // MARK: - IQAppMessageDelegate
     func receivedMessage(_ message: Any, from app: IQApp) {
         addLog("Received message from app: \(app): \(message)")
+        latestReceivedMessage = (message: message, app: app)
     }
     
     // MARK: - App Management Methods

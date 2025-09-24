@@ -14,6 +14,20 @@ struct AppMessageView: View {
     
     var body: some View {
         VStack(spacing: 0) {
+            // Show latest received message
+            if let latest = viewModel.latestReceivedMessage {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Latest Received Message:")
+                        .font(.headline)
+                    Text("Message: \(String(describing: latest.message))")
+                        .font(.body)
+                        .foregroundColor(.primary)
+                }
+                .padding()
+                .background(Color(.systemGray5))
+                .cornerRadius(8)
+                .padding([.top, .horizontal])
+            }
             List(viewModel.tableEntries, id: \.label) { entry in
                 Button(action: {
                     if let appInfo = viewModel.selectedAppInfo {
@@ -30,7 +44,7 @@ struct AppMessageView: View {
             Divider()
             ScrollView {
                 VStack(alignment: .leading, spacing: 2) {
-                    ForEach(viewModel.logMessages, id: \.self) { msg in
+                    ForEach(Array(viewModel.logMessages.enumerated()), id: \.offset) { index, msg in
                         Text(msg)
                             .font(.system(size: 12, design: .monospaced))
                             .foregroundColor(.secondary)
