@@ -5,13 +5,17 @@ import ConnectIQ
 struct CommsApp: App {
     var body: some Scene {
         WindowGroup {
-            Text("Lap Timer Companion")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.top, 32)
-                .padding(.bottom, 16)
-            Divider()
-            MessageView()
+            VStack(alignment: .center) {
+                Text("Lap Timer Companion")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding(.top, 32)
+                    .padding(.bottom, 16)
+                Divider()
+                MessageView()
+                Spacer()
+            }
+            .frame(maxWidth: .infinity, alignment: .top)
         }
     }
 }

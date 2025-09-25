@@ -5,6 +5,7 @@ import ConnectIQ
 final class GarminService {
     // This must match the value in `Info.plist`.
     private static let urlScheme = "com.jaisinha.laptimercompanion"
+    private static let storedDeviceUUIDsKey = "GarminService.storedDeviceUUIDs"
 
     static let shared = GarminService()
 
@@ -14,16 +15,42 @@ final class GarminService {
 
     private var lifetimeCancellables: Set<AnyCancellable> = []
 
-    private init() {
-        ConnectIQ.shared?.initialize(withUrlScheme: Self.urlScheme, uiOverrideDelegate: nil)
-
-        manager.messageHandler = { [weak self] messageData in
-            self?.messageSubject.send(messageData)
-        }
-    }
 
     func observeMessages() -> AnyPublisher<Data, Never> {
         messageSubject.eraseToAnyPublisher()
+    }
+
+    private func saveDevice(_ device: IQDevice) {
+        var uuids = UserDefaults.standard.stringArray(forKey: Self.storedDeviceUUIDsKey) ?? []
+        let uuidString = device.uuid.uuidString
+        if !uuids.contains(uuidString) {
+            uuids.append(uuidString)
+            UserDefaults.standard.set(uuids, forKey: Self.storedDeviceUUIDsKey)
+        }
+    }
+
+    private func restoreSavedDevices() {
+        let uuids = UserDefaults.standard.stringArray(forKey: Self.storedDeviceUUIDsKey) ?? []
+        for uuidString in uuids {
+            if let uuid = UUID(uuidString: uuidString) {
+                if let device = IQDevice(id: uuid, modelName: nil, friendlyName: nil) {
+                    ConnectIQ.shared?.register(forDeviceEvents: device, delegate: manager)
+                    print("Restored device with UUID: \(uuidString)")
+                }
+            }
+        }
+    }
+
+    private func clearSavedDevices() {
+        UserDefaults.standard.removeObject(forKey: Self.storedDeviceUUIDsKey)
+    }
+
+    private init() {
+        ConnectIQ.shared?.initialize(withUrlScheme: Self.urlScheme, uiOverrideDelegate: nil)
+        manager.messageHandler = { [weak self] messageData in
+            self?.messageSubject.send(messageData)
+        }
+        restoreSavedDevices()
     }
 
     @discardableResult
@@ -34,6 +61,7 @@ final class GarminService {
 
         for device in devices {
             ConnectIQ.shared?.register(forDeviceEvents: device, delegate: manager)
+            saveDevice(device)
         }
 
         return true
