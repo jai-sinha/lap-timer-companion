@@ -7,21 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B09F7CC2E7CDD5B008AEBAD /* AppMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7CB2E7CDD42008AEBAD /* AppMessageViewModel.swift */; };
-		7B09F7CE2E7CDD7B008AEBAD /* AppMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7CD2E7CDD7B008AEBAD /* AppMessageView.swift */; };
-		7B09F7D02E7CDDA8008AEBAD /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7CF2E7CDDA8008AEBAD /* AppInfo.swift */; };
-		7B09F7D22E7CDE0B008AEBAD /* DeviceAppListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7D12E7CDE0B008AEBAD /* DeviceAppListViewModel.swift */; };
-		7B09F7D42E7CDE30008AEBAD /* TableEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7D32E7CDE30008AEBAD /* TableEntry.swift */; };
-		7B09F7D82E7D17A4008AEBAD /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7D72E7D17A4008AEBAD /* AppView.swift */; };
-		7B09F7DA2E7D19F0008AEBAD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7D92E7D19F0008AEBAD /* SceneDelegate.swift */; };
-		7B09F7DD2E7D1C49008AEBAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7152E7BEBA30056D79F /* AppDelegate.swift */; };
-		7B09F7DF2E7E0103008AEBAD /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09F7DE2E7E0103008AEBAD /* AppManager.swift */; };
 		7BA8A7302E7BEBA30056D79F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A71D2E7BEBA30056D79F /* Assets.xcassets */; };
-		7BA8A73B2E7BEBA30056D79F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A71E2E7BEBA30056D79F /* Constants.swift */; };
-		7BA8A73D2E7BEBA30056D79F /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7252E7BEBA30056D79F /* DeviceManager.swift */; };
-		7BA8A74A2E7CC9230056D79F /* DeviceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A7482E7CC9230056D79F /* DeviceListViewModel.swift */; };
-		7BA8A74C2E7CCC600056D79F /* DeviceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA8A74B2E7CCC600056D79F /* DeviceListView.swift */; };
 		7BA8A7502E7CD4290056D79F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BA8A74F2E7CD4290056D79F /* LaunchScreen.storyboard */; };
+		7BE05AC72E84BD950057EAE2 /* CommsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE05AC22E84BD950057EAE2 /* CommsApp.swift */; };
+		7BE05AC82E84BD950057EAE2 /* MessageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE05AC52E84BD950057EAE2 /* MessageDTO.swift */; };
+		7BE05AC92E84BD950057EAE2 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE05AC62E84BD950057EAE2 /* MessageView.swift */; };
+		7BE05ACA2E84BD950057EAE2 /* GarminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE05AC32E84BD950057EAE2 /* GarminService.swift */; };
 		F0709E221E1A0C4800D255F5 /* ConnectIQ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */; };
 		F0709E271E1A0D1200D255F5 /* ConnectIQ.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -41,24 +32,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7B09F7CB2E7CDD42008AEBAD /* AppMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMessageViewModel.swift; sourceTree = "<group>"; };
-		7B09F7CD2E7CDD7B008AEBAD /* AppMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMessageView.swift; sourceTree = "<group>"; };
-		7B09F7CF2E7CDDA8008AEBAD /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
-		7B09F7D12E7CDE0B008AEBAD /* DeviceAppListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAppListViewModel.swift; sourceTree = "<group>"; };
-		7B09F7D32E7CDE30008AEBAD /* TableEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableEntry.swift; sourceTree = "<group>"; };
-		7B09F7D72E7D17A4008AEBAD /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
-		7B09F7D92E7D19F0008AEBAD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7B09F7DE2E7E0103008AEBAD /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		7B09F7E02E7E0B0C008AEBAD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		7BA8A7152E7BEBA30056D79F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BA8A71D2E7BEBA30056D79F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7BA8A71E2E7BEBA30056D79F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		7BA8A7252E7BEBA30056D79F /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
-		7BA8A7282E7BEBA30056D79F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7BA8A7482E7CC9230056D79F /* DeviceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListViewModel.swift; sourceTree = "<group>"; };
-		7BA8A74B2E7CCC600056D79F /* DeviceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListView.swift; sourceTree = "<group>"; };
 		7BA8A74F2E7CD4290056D79F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BA8A7552E7CD86D0056D79F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7BE05AC22E84BD950057EAE2 /* CommsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommsApp.swift; sourceTree = "<group>"; };
+		7BE05AC32E84BD950057EAE2 /* GarminService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarminService.swift; sourceTree = "<group>"; };
+		7BE05AC42E84BD950057EAE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BE05AC52E84BD950057EAE2 /* MessageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDTO.swift; sourceTree = "<group>"; };
+		7BE05AC62E84BD950057EAE2 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		F01F14F11DB5E01C0076EBE6 /* LapTimerCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LapTimerCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0709E211E1A0C4800D255F5 /* ConnectIQ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ConnectIQ.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,42 +57,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7B09F7CA2E7CDD36008AEBAD /* App */ = {
-			isa = PBXGroup;
-			children = (
-				7B09F7CF2E7CDDA8008AEBAD /* AppInfo.swift */,
-				7B09F7CD2E7CDD7B008AEBAD /* AppMessageView.swift */,
-				7B09F7CB2E7CDD42008AEBAD /* AppMessageViewModel.swift */,
-				7B09F7DE2E7E0103008AEBAD /* AppManager.swift */,
-			);
-			path = App;
-			sourceTree = "<group>";
-		};
 		7BA8A72C2E7BEBA30056D79F /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				7B09F7D92E7D19F0008AEBAD /* SceneDelegate.swift */,
-				7BA8A7282E7BEBA30056D79F /* Info.plist */,
-				7BA8A7152E7BEBA30056D79F /* AppDelegate.swift */,
-				7B09F7D72E7D17A4008AEBAD /* AppView.swift */,
-				7BA8A71E2E7BEBA30056D79F /* Constants.swift */,
-				7B09F7D32E7CDE30008AEBAD /* TableEntry.swift */,
-				7B09F7CA2E7CDD36008AEBAD /* App */,
 				7BA8A7522E7CD64B0056D79F /* Assets */,
-				7BA8A7512E7CD6190056D79F /* Device */,
+				7BE05AC22E84BD950057EAE2 /* CommsApp.swift */,
+				7BE05AC32E84BD950057EAE2 /* GarminService.swift */,
+				7BE05AC42E84BD950057EAE2 /* Info.plist */,
+				7BE05AC52E84BD950057EAE2 /* MessageDTO.swift */,
+				7BE05AC62E84BD950057EAE2 /* MessageView.swift */,
 			);
 			path = Source;
-			sourceTree = "<group>";
-		};
-		7BA8A7512E7CD6190056D79F /* Device */ = {
-			isa = PBXGroup;
-			children = (
-				7B09F7D12E7CDE0B008AEBAD /* DeviceAppListViewModel.swift */,
-				7BA8A7252E7BEBA30056D79F /* DeviceManager.swift */,
-				7BA8A74B2E7CCC600056D79F /* DeviceListView.swift */,
-				7BA8A7482E7CC9230056D79F /* DeviceListViewModel.swift */,
-			);
-			path = Device;
 			sourceTree = "<group>";
 		};
 		7BA8A7522E7CD64B0056D79F /* Assets */ = {
@@ -175,7 +132,7 @@
 					F01F14F01DB5E01C0076EBE6 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = GP43JX46JD;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 2600;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -220,19 +177,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B09F7DD2E7D1C49008AEBAD /* AppDelegate.swift in Sources */,
-				7B09F7CC2E7CDD5B008AEBAD /* AppMessageViewModel.swift in Sources */,
-				7B09F7D22E7CDE0B008AEBAD /* DeviceAppListViewModel.swift in Sources */,
-				7BA8A74A2E7CC9230056D79F /* DeviceListViewModel.swift in Sources */,
-				7BA8A74C2E7CCC600056D79F /* DeviceListView.swift in Sources */,
-				7B09F7D82E7D17A4008AEBAD /* AppView.swift in Sources */,
-				7B09F7DF2E7E0103008AEBAD /* AppManager.swift in Sources */,
-				7BA8A73B2E7BEBA30056D79F /* Constants.swift in Sources */,
-				7BA8A73D2E7BEBA30056D79F /* DeviceManager.swift in Sources */,
-				7B09F7D02E7CDDA8008AEBAD /* AppInfo.swift in Sources */,
-				7B09F7CE2E7CDD7B008AEBAD /* AppMessageView.swift in Sources */,
-				7B09F7D42E7CDE30008AEBAD /* TableEntry.swift in Sources */,
-				7B09F7DA2E7D19F0008AEBAD /* SceneDelegate.swift in Sources */,
+				7BE05AC72E84BD950057EAE2 /* CommsApp.swift in Sources */,
+				7BE05AC82E84BD950057EAE2 /* MessageDTO.swift in Sources */,
+				7BE05AC92E84BD950057EAE2 /* MessageView.swift in Sources */,
+				7BE05ACA2E84BD950057EAE2 /* GarminService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
